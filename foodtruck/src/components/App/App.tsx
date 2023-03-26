@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import { Header } from '../Header/Header'
+import { Footer } from '../Footer/Footer'
 
 interface AppProps {}
 
@@ -14,6 +15,7 @@ class App extends React.Component <AppProps> {
     return(
       <div>
         <Header />
+        <Footer />
       </div>
     )
   }
