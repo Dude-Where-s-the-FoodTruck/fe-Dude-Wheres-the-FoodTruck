@@ -3,6 +3,9 @@ import './Footer.css'
 
 export const Footer = () => {
     return(
-        <footer></footer>
+        <footer>
+            <h3 className="footer-name">© Dude, Where's My FoodTruck</h3>
+            <p className="footer-city">Denver, CO</p>
+        </footer>
     )
 }
