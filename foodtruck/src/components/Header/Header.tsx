@@ -3,6 +3,9 @@ import './Header.css'
 
 export const Header = () => {
     return(
-        <header></header>
+        <header>
+            <h1>Dude, Where's My FoodTruck</h1>
+            {/* <img src={} alt></img> */}
+        </header>
     )
 }
