@@ -8,6 +8,12 @@ class App extends React.Component <AppProps> {
     super(props)
 
   }
+
+  render(){
+    return(
+      <div></div>
+    )
+  }
 }
 
 
