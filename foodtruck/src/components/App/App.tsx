@@ -1,12 +1,12 @@
-import React from 'react'
-import './App.css'
-import { Header } from '../Header/Header'
-import { Footer } from '../Footer/Footer'
+import React from "react";
+import "./App.css";
+import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
+import { MainPage } from "../MainPage/MainPage";
 import { Route, Switch, Link } from "react-router-dom";
-import { dummyData } from '../../apiCalls';
+import { dummyData } from "../../apiCalls";
 
-
-interface Trucks {
+interface TrucksData {
   data: {
     id: number;
     attributes: {
@@ -19,44 +19,41 @@ interface Trucks {
 }
 
 interface AppState {
-  trucks: Trucks[];
+  trucks: TrucksData[];
   errors: string;
-  filteredTrucks: []
+  filteredTrucks: [];
 }
 
-class App extends React.Component <{}, AppState> {
+class App extends React.Component<{}, AppState> {
   state: AppState = {
     trucks: [],
     errors: "",
-    filteredTrucks: []
-  }
+    filteredTrucks: [],
+  };
 
   componentDidMount(): void {
     this.setState({
-      trucks: dummyData
-    })
-    
+      trucks: dummyData,
+    });
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <Link style={{ textDecoration: "none" }} to="/">
           <Header />
         </Link>
         <Switch>
           <Route exact path="/">
-            <div>
-            </div>
+            <MainPage truckData={this.state.trucks} />
           </Route>
         </Switch>
         <Link style={{ textDecoration: "none" }} to="/">
           <Footer />
         </Link>
       </div>
-    )
+    );
   }
 }
 
-
-export default App
+export default App;
