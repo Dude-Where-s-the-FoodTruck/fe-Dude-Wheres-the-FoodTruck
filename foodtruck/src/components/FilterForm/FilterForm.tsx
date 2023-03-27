@@ -10,7 +10,6 @@ class FilterForm extends React.Component<FilterFormProps> {
       city: "",
     };
   }
-
   render() {
     return (
         <div>
