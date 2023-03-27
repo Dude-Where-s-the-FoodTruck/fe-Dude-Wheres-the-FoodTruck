@@ -19,7 +19,8 @@ class App extends React.Component <AppProps> {
         </Link>
         <Switch>
           <Route exact path="/">
-            <div></div>
+            <div>
+            </div>
           </Route>
         </Switch>
         <Link style={{ textDecoration: "none" }} to="/">
