@@ -1,5 +1,6 @@
 import './TruckDetails.css'
 import React from "react";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 interface TruckDetailsProps {}
 
