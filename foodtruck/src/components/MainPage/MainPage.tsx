@@ -8,6 +8,8 @@ interface MainPageProps {
             id: number;
             attributes: {
                 name: string;
+                city: string;
+                date: string;
                 cuisine_type: string;
                 web_link: string;
                 image_link: string;

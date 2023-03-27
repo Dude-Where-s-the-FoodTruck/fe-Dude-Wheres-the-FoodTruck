@@ -7,6 +7,8 @@ export interface TrucksProps {
             id: number;
             attributes: {
                 name: string;
+                city: string;
+                date: string;
                 cuisine_type: string;
                 web_link: string;
                 image_link: string;
@@ -23,6 +25,8 @@ export const Trucks: React.FC<TrucksProps> = ({ truckData }) => {
             <TruckCard 
                 id={truck.id}
                 name={truck.attributes.name}
+                city={truck.attributes.city}
+                date={truck.attributes.date}
                 cuisine={truck.attributes.cuisine_type}
                 website={truck.attributes.web_link}
                 image={truck.attributes.image_link}
