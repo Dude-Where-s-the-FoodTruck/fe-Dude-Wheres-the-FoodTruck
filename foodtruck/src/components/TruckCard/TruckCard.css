@@ -1,0 +1,19 @@
+.card-container, a {
+    background-size: 100% 100%;
+    background-position: center;
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.truck-name {
+    height: -webkit-fill-available;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    padding-bottom: 15px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}

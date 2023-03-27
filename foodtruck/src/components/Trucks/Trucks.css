@@ -1,0 +1,10 @@
+.trucks-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    grid-row-gap: 40px; 
+    margin: 0 auto;
+    width: 90%;
+    padding-top: 90px;
+    padding-bottom: 40px;
+}
