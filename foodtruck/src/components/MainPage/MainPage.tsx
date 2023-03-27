@@ -1,6 +1,6 @@
 import './MainPage.css'
 import FilterForm from '../FilterForm/FilterForm'
-import { Trucks } from '../Trucks/Trucks';
+import { Trucks, TrucksProps } from '../Trucks/Trucks';
 
 interface MainPageProps {
     truckData: {
