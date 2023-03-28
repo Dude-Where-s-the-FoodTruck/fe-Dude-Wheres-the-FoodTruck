@@ -6,13 +6,6 @@ import { MainPage } from "../MainPage/MainPage";
 import { Route, Switch, Link } from "react-router-dom";
 import { dummyData } from "../../apiCalls";
 
-interface TruckAttributes {
-  name: string;
-  cuisine_type: string;
-  web_link: string;
-  image_link: string;
-}
-
 interface TruckRelationshipAttributes {
   event_date: string;
   city: string;
@@ -28,16 +21,23 @@ interface TruckRelationships {
   attributes: TruckRelationshipAttributes;
 }
 
-interface TrucksData {
+interface TruckAttributes {
+  name: string;
+  cuisine_type: string;
+  web_link: string;
+  image_link: string;
+}
+
+export interface TruckData {
   id: number;
   attributes: TruckAttributes;
   relationships: TruckRelationships[];
 }
 
 interface AppState {
-  trucks: TrucksData[];
+  trucks: TruckData[];
   errors: string;
-  filteredTrucks: [];
+  filteredTrucks: TruckData[];
 }
 
 class App extends React.Component<{}, AppState> {
@@ -49,7 +49,7 @@ class App extends React.Component<{}, AppState> {
 
   componentDidMount(): void {
     this.setState({
-      trucks: [dummyData.data],
+      trucks: dummyData.map((d) => d.data),
     });
   }
 
@@ -64,9 +64,7 @@ class App extends React.Component<{}, AppState> {
             <MainPage truckData={this.state.trucks} />
           </Route>
         </Switch>
-        <Link style={{ textDecoration: "none" }} to="/">
-          <Footer />
-        </Link>
+        <Footer />
       </div>
     );
   }

@@ -1,52 +1,24 @@
-import './Trucks.css'
-import { TruckCard } from '../TruckCard/TruckCard';
+import './Trucks.css';
+import { TruckCard, TruckCardProps } from '../TruckCard/TruckCard';
+import { TruckData } from '../App/App';
 
 export interface TrucksProps {
-    truckData: {
-        data: {
-          id: number;
-          attributes: {
-            name: string;
-            cuisine_type: string;
-            web_link: string;
-            image_link: string;
-          };
-          relationships: {
-            type: string;
-            id: number;
-            attributes: {
-              event_date: string;
-              city: string;
-              latitude: number;
-              longitude: number;
-              start_time: string;
-              description: string;
-            };
-          }[];
-        }[];
-      }[];
+  truckData: TruckData[];
 }
-
 
 export const Trucks: React.FC<TrucksProps> = ({ truckData }) => {
-    const dataFix = truckData.map((truck) => truck.data[0])
-    const truckCards = dataFix.map((truck) => {
-        return(
-            <TruckCard 
-                id={truck.id}
-                name={truck.attributes.name}
-                city={truck.attributes.city}
-                date={truck.attributes.date}
-                cuisine={truck.attributes.cuisine_type}
-                website={truck.attributes.web_link}
-                image={truck.attributes.image_link}
-                key={truck.id}
-            />
-        )
-    })
-    return (
-        <div className='trucks-container'>
-              {truckCards}
-        </div>
-    )
-}
+  const truckCards = truckData.map((truck) => {
+    const truckCardProps: TruckCardProps = {
+      id: truck.id,
+      name: truck.attributes.name,
+      city: truck.relationships[0].attributes.city,
+      date: truck.relationships[0].attributes.event_date,
+      cuisine: truck.attributes.cuisine_type,
+      website: truck.attributes.web_link,
+      image: truck.attributes.image_link,
+    };
+    return <TruckCard {...truckCardProps} key={truck.id.toString()} />;
+  });
+
+  return <div className='trucks-container'>{truckCards}</div>;
+};
