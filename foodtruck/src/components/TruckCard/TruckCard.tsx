@@ -16,8 +16,6 @@ export const TruckCard: React.FC<TruckCardProps> = ({
   name,
   city,
   date,
-  cuisine,
-  website,
   image,
 }) => {
   return (
