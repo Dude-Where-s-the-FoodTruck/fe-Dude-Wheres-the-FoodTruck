@@ -8,7 +8,6 @@
 }
 
 .truck-name {
-    height: -webkit-fill-available;
     padding: 0;
     margin: 0;
     display: flex;
@@ -16,4 +15,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+}
+
+.card-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: -webkit-fill-available;
+    justify-content: flex-end;
+}
+
+p {
+    margin: 3px
 }

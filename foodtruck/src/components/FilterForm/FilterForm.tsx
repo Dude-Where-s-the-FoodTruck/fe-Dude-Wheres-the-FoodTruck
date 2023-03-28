@@ -12,7 +12,18 @@ class FilterForm extends React.Component<FilterFormProps> {
   }
   render() {
     return (
-        <div>
+        <div className="form-container">
+          <label>Choose a city:</label>
+          <select
+          className="drop-down"
+          //onChange={(event) => this.setState({city: event.target.value})}
+          name="city"
+          id="city"
+          //value={this.state.city}
+          >
+          <option value="" disabled></option>
+          <option></option>
+          </select>
         </div>
     )
 }
