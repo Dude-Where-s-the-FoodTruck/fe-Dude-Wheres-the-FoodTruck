@@ -8,7 +8,7 @@ export const dummyData = [
             web_link: "www.google.com",
             image_link: "https://i.etsystatic.com/14707052/r/il/00fc2c/1153843098/il_794xN.1153843098_9jks.jpg"
           },
-          "relationships": [
+          relationships: [
               {
                 type: "event",
                 id: 1,
@@ -33,7 +33,7 @@ export const dummyData = [
                 web_link: "www.google.com",
                 image_link: "https://i.etsystatic.com/14707052/r/il/00fc2c/1153843098/il_794xN.1153843098_9jks.jpg"
               },
-              "relationships": [
+              relationships: [
                   {
                     type: "event",
                     id: 2,
@@ -58,7 +58,7 @@ export const dummyData = [
                     web_link: "www.google.com",
                     image_link: "https://i.etsystatic.com/14707052/r/il/00fc2c/1153843098/il_794xN.1153843098_9jks.jpg"
                   },
-                  "relationships": [
+                  relationships: [
                       {
                         type: "event",
                         id: 1,
@@ -83,7 +83,7 @@ export const dummyData = [
                         web_link: "www.google.com",
                         image_link: "https://i.etsystatic.com/14707052/r/il/00fc2c/1153843098/il_794xN.1153843098_9jks.jpg"
                       },
-                      "relationships": [
+                      relationships: [
                           {
                             type: "event",
                             id: 3,
@@ -108,7 +108,7 @@ export const dummyData = [
                             web_link: "www.google.com",
                             image_link: "https://i.etsystatic.com/14707052/r/il/00fc2c/1153843098/il_794xN.1153843098_9jks.jpg"
                           },
-                          "relationships": [
+                          relationships: [
                               {
                                 type: "event",
                                 id: 1,
