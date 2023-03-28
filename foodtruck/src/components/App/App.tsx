@@ -6,18 +6,32 @@ import { MainPage } from "../MainPage/MainPage";
 import { Route, Switch, Link } from "react-router-dom";
 import { dummyData } from "../../apiCalls";
 
+interface TruckAttributes {
+  name: string;
+  cuisine_type: string;
+  web_link: string;
+  image_link: string;
+}
+
+interface TruckRelationshipAttributes {
+  event_date: string;
+  city: string;
+  latitude: number;
+  longitude: number;
+  start_time: string;
+  description: string;
+}
+
+interface TruckRelationships {
+  type: string;
+  id: number;
+  attributes: TruckRelationshipAttributes;
+}
+
 interface TrucksData {
-  data: {
-    id: number;
-    attributes: {
-      name: string;
-      city: string;
-      date: string;
-      cuisine_type: string;
-      web_link: string;
-      image_link: string;
-    };
-  }[];
+  id: number;
+  attributes: TruckAttributes;
+  relationships: TruckRelationships[];
 }
 
 interface AppState {
@@ -33,9 +47,9 @@ class App extends React.Component<{}, AppState> {
     filteredTrucks: [],
   };
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.setState({
-      trucks: dummyData,
+      trucks: [dummyData.data],
     });
   }
 

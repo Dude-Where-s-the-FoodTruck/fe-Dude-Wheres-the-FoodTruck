@@ -14,10 +14,10 @@ export const dummyData = [
                 id: 1,
                 attributes: {
                 event_date: "04/29/2023",
+                city: "Denver",
                 latitude: 39.739235,
                 longitude: -104.990250,
                 start_time: "12",
-                end_time: "4",
                 description: "This food truck is not a spoon."
                 },
               }
@@ -39,10 +39,10 @@ export const dummyData = [
                     id: 2,
                     attributes: {
                     event_date: "04/28/2023",
+                    city: "Colorado Springs",
                     latitude: 38.833881,
                     longitude: -104.821365,
                     start_time: "12",
-                    end_time: "4",
                     description: "We may have food. We may not."
                     },
                   }
@@ -64,10 +64,10 @@ export const dummyData = [
                         id: 1,
                         attributes: {
                         event_date: "04/29/2023",
+                        city: "Greeley",
                         latitude: 39.739235,
                         longitude: -104.990250,
                         start_time: "12",
-                        end_time: "4",
                         description: "We're watching you."
                         },
                       }
@@ -89,10 +89,10 @@ export const dummyData = [
                             id: 3,
                             attributes: {
                             event_date: "04/29/2023",
+                            city: "Denver",
                             latitude: 40.423313,
                             longitude: -104.709129,
                             start_time: "12",
-                            end_time: "4",
                             description: "Eat everything."
                             },
                           }
@@ -114,10 +114,10 @@ export const dummyData = [
                                 id: 1,
                                 attributes: {
                                 event_date: "04/29/2023",
+                                city: "Denver",
                                 latitude: 39.739235,
                                 longitude: -104.990250,
                                 start_time: "12",
-                                end_time: "4",
                                 description: "This food truck is not a spoon."
                                 },
                               }

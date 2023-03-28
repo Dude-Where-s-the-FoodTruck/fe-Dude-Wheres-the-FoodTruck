@@ -4,17 +4,27 @@ import { TruckCard } from '../TruckCard/TruckCard';
 export interface TrucksProps {
     truckData: {
         data: {
+          id: number;
+          attributes: {
+            name: string;
+            cuisine_type: string;
+            web_link: string;
+            image_link: string;
+          };
+          relationships: {
+            type: string;
             id: number;
             attributes: {
-                name: string;
-                city: string;
-                date: string;
-                cuisine_type: string;
-                web_link: string;
-                image_link: string;
+              event_date: string;
+              city: string;
+              latitude: number;
+              longitude: number;
+              start_time: string;
+              description: string;
             };
+          }[];
         }[];
-    }[];
+      }[];
 }
 
 
