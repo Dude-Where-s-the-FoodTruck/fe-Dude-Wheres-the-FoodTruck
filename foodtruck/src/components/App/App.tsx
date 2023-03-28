@@ -33,7 +33,7 @@ class App extends React.Component<{}, AppState> {
     filteredTrucks: [],
   };
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.setState({
       trucks: dummyData,
     });
