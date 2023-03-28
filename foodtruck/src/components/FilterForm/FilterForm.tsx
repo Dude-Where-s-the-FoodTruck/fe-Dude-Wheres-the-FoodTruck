@@ -1,9 +1,16 @@
 import "./FilterForm.css";
 import React from "react";
+import { TruckData } from '../App/App';
 
-interface FilterFormProps {}
+interface FilterFormState {
+  city: string;
+}
 
-class FilterForm extends React.Component<FilterFormProps> {
+export interface FilterFormProps {
+  
+}
+
+class FilterForm extends React.Component<FilterFormProps, FilterFormState> {
   constructor(props: FilterFormProps) {
     super(props);
     this.state = {

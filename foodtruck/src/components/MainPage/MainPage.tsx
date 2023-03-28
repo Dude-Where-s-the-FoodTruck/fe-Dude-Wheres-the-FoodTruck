@@ -11,7 +11,7 @@ export const MainPage: React.FC<MainPageProps> = ({ truckData }) => {
   const trucksProps: TrucksProps = { truckData };
   return (
     <div className='truck-view'>
-      <FilterForm />
+      <FilterForm {...trucksProps} />
       <Trucks {...trucksProps} />
     </div>
   );
