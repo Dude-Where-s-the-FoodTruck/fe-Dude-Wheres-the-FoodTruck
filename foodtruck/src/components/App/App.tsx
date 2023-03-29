@@ -85,7 +85,9 @@ class App extends React.Component<{}, AppState> {
           </Route>
           <Route path="/foodtruck/:name" render={(props) => <TruckDetails {...props} truckData={this.state.trucks} />} />
         </Switch>
-        <Footer />
+        <Link style={{ textDecoration: "none" }} to="/">
+          <Footer />
+        </Link>
       </div>
     );
   }
