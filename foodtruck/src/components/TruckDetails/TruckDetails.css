@@ -1,0 +1,23 @@
+.TruckDetails {
+    display: flex;
+    pad: 10vh;
+}
+
+.not-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 2vh;
+}
+
+.map {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-right: 1vh;
+}
+
+.weblink-button {
+    height: 100px
+}

@@ -39,14 +39,17 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
     }
     return (
       <div className="TruckDetails">
-        <Link to="/">
+        <span className='not-map'>
+          <Link to="/">
             <button className="go-to-events">Back to Events</button>
-        </Link>
-        <h1>{truck.attributes.name}</h1>
-        <h3>Food Type: {truck.attributes.cuisine_type}</h3>
-        <p>Where?: {truck?.relationships[0].attributes.city}</p>
-        <p>Description of Location: {truck?.relationships[0].attributes.description}</p>
-        <a href={truck.attributes.web_link} target="_blank" rel="noopener noreferrer">Visit The Website</a>
+          </Link>
+          <h1>{truck.attributes.name}</h1>
+          <h3>Food Type: {truck.attributes.cuisine_type}</h3>
+          <p>Where?: {truck?.relationships[0].attributes.city}</p>
+          <p>Description of Location: {truck?.relationships[0].attributes.description}</p>
+          <a className="weblink-button" href={truck.attributes.web_link} target="_blank" rel="noopener noreferrer">Visit The Website</a>
+        </span>
+        <span className='map'>
         <Map
             initialViewState={{
               latitude: truck.relationships[0].attributes.latitude,
@@ -66,6 +69,7 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
               color="red"
             />
           </Map>
+        </span>
       </div>
     );
   }
