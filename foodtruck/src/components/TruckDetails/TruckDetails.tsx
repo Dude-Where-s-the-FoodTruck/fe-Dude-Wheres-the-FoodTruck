@@ -53,13 +53,13 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
           </Link>
           <img className="truck-image" src={truck.attributes.image_link}/>
           <h1>{truck.attributes.name}</h1>
-          <p>Food Type: {truck.attributes.cuisine_type}</p>
-          <p>Where?: {truck?.relationships[0].attributes.city}</p>
-          <p>Description of Location: {truck?.relationships[0].attributes.description}</p>
+          <p><strong>Food Type:</strong> {truck.attributes.cuisine_type}</p>
+          <p><strong>Where?:</strong> {truck?.relationships[0].attributes.city}</p>
+          <p><strong>Description of Location:</strong> {truck?.relationships[0].attributes.description}</p>
           <a className="weblink-button" href={truck.attributes.web_link} target="_blank" rel="noopener noreferrer">Visit The Website</a>
         </span>
         <span className='map'>
-          <p>We Are Here!</p>
+          <p><strong>We Are Here!</strong></p>
           <div style={{ border: "1px solid black", width: "30vw", height: "30vw" }}>
         <Map
             initialViewState={{
