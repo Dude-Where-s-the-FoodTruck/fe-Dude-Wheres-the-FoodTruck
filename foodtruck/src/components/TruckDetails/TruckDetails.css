@@ -1,23 +1,70 @@
 .TruckDetails {
     display: flex;
-    pad: 10vh;
+    justify-content: space-between;
+    height: 73vh;
 }
 
 .not-map {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     margin-left: 2vh;
 }
 
 .map {
-    display: flex;
+     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     margin-right: 1vh;
+    padding-top: 11vh;
 }
 
 .weblink-button {
     height: 100px
+}
+
+p {
+    padding: 5px
+}
+
+.truck-image {
+    height: 30vh;
+    width: 35vh;
+    padding: 13px
+}
+
+/* CSS */
+.go-to-events {
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.go-to-events:hover,
+.go-to-events:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.go-to-events:active {
+  background: var(--color);
+  color: #fff;
 }

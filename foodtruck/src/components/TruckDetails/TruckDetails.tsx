@@ -16,18 +16,26 @@ interface TruckDetailsProps {
 
 interface TruckDetailsState {
   truck: TruckData | null;
+  isLoading: boolean;
 }
 
 class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState> {
   state: TruckDetailsState = {
-    truck: null
+    truck: null,
+    isLoading: true,
   }
 
   componentDidMount(): void {
     const truckName = this.props.match.params.name;
     const truck = this.props.truckData.find(t => t.attributes.name === truckName);
     if (truck) {
-      this.setState({ truck });
+      this.setState({ truck, isLoading: false });
+      localStorage.setItem('truck', JSON.stringify(truck));
+    } else {
+      const truckDataFromStorage = localStorage.getItem('truck');
+      if (truckDataFromStorage) {
+        this.setState({ truck: JSON.parse(truckDataFromStorage), isLoading: false });
+      }
     }
   }
   
@@ -43,13 +51,16 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
           <Link to="/">
             <button className="go-to-events">Back to Events</button>
           </Link>
+          <img className="truck-image" src={truck.attributes.image_link}/>
           <h1>{truck.attributes.name}</h1>
-          <h3>Food Type: {truck.attributes.cuisine_type}</h3>
+          <p>Food Type: {truck.attributes.cuisine_type}</p>
           <p>Where?: {truck?.relationships[0].attributes.city}</p>
           <p>Description of Location: {truck?.relationships[0].attributes.description}</p>
           <a className="weblink-button" href={truck.attributes.web_link} target="_blank" rel="noopener noreferrer">Visit The Website</a>
         </span>
         <span className='map'>
+          <p>We Are Here!</p>
+          <div style={{ border: "1px solid black", width: "30vw", height: "30vw" }}>
         <Map
             initialViewState={{
               latitude: truck.relationships[0].attributes.latitude,
@@ -69,6 +80,7 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
               color="red"
             />
           </Map>
+          </div>
         </span>
       </div>
     );
