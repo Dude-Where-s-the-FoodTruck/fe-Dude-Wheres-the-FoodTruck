@@ -1,9 +1,6 @@
 import React from 'react';
 import './TruckDetails.css';
 import { TruckData } from '../App/App';
-import Map, { Marker } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
-import { Link } from "react-router-dom";
 
 interface TruckDetailsProps {
   match: {
@@ -15,7 +12,7 @@ interface TruckDetailsProps {
 }
 
 interface TruckDetailsState {
-  truck: TruckData | null;
+  truck: TruckData | null
 }
 
 class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState> {
@@ -32,40 +29,17 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
   }
   
   render() {
-    const MAPBOX_TOKEN = "pk.eyJ1IjoiamF5c21pdGg2MDM1IiwiYSI6ImNsZXEzMDZzODA5NGIzc3BoNTZxeTcyNGUifQ.o85HEkHjse8_WF-O5_d7jg"
     const { truck } = this.state;
     if (!truck) {
       return <div>Loading...</div>;
     }
     return (
       <div className="TruckDetails">
-        <Link to="/">
-            <button className="go-to-events">Back to Events</button>
-        </Link>
         <h1>{truck.attributes.name}</h1>
         <h3>Food Type: {truck.attributes.cuisine_type}</h3>
         <p>Where?: {truck?.relationships[0].attributes.city}</p>
         <p>Description of Location: {truck?.relationships[0].attributes.description}</p>
-        <a href={truck.attributes.web_link} target="_blank" rel="noopener noreferrer">Visit The Website</a>
-        <Map
-            initialViewState={{
-              latitude: truck.relationships[0].attributes.latitude,
-              longitude: truck.relationships[0].attributes.longitude,
-              zoom: 18,
-            }}
-            style={{
-              width: "30vw",
-              height: "30vw",
-            }}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
-            mapboxAccessToken={MAPBOX_TOKEN}
-          >
-            <Marker
-              longitude={truck.relationships[0].attributes.longitude}
-              latitude={truck.relationships[0].attributes.latitude}
-              color="red"
-            />
-          </Map>
+        <a href={truck.attributes.web_link} target="_blank" rel="noreferrer">{truck.attributes.web_link}</a>
       </div>
     );
   }
