@@ -71,7 +71,7 @@ class FilterForm extends React.Component<FilterFormProps, FilterFormState> {
           Submit
         </button>
         <button className="reset-button" onClick={this.handleReset}>
-          Back To All
+          Reset
         </button>
       </div>
     );
