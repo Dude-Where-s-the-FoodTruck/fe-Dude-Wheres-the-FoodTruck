@@ -3,6 +3,8 @@ import "./App.css";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import { MainPage } from "../MainPage/MainPage";
+import { OwnerPage } from "../OwnerPage/OwnerPage";
+import { LogIn } from "../LogIn/LogIn";
 import TruckDetails from "../TruckDetails/TruckDetails";
 import { Route, Switch, Link } from "react-router-dom";
 import { dummyData } from "../../apiCalls";
@@ -39,6 +41,7 @@ interface AppState {
   trucks: TruckData[];
   errors: string;
   filteredTrucks: TruckData[];
+  userType: string;
 }
 
 class App extends React.Component<{}, AppState> {
@@ -46,12 +49,19 @@ class App extends React.Component<{}, AppState> {
     trucks: [],
     errors: "",
     filteredTrucks: [],
+    userType: '',
   }
 
   componentDidMount(): void {
     this.setState({
       trucks: dummyData.map((d) => d.data),
     });
+  }
+
+  setUserType = (type: string): void => {
+    this.setState({
+      userType: type
+    })
   }
 
   getFilteredTrucks = (city: string): void => {
@@ -71,9 +81,11 @@ class App extends React.Component<{}, AppState> {
   render() {
     return (
       <div className="main-page">
+        {!this.state.userType && <LogIn setUserType={this.setUserType} />}
         <Link style={{ textDecoration: "none" }} to="/">
           <Header />
         </Link>
+        { this.state.userType === 'user' && (
         <Switch>
           <Route exact path="/">
             <MainPage
@@ -84,10 +96,18 @@ class App extends React.Component<{}, AppState> {
             />
           </Route>
           <Route path="/foodtruck/:name" render={(props) => <TruckDetails {...props} truckData={this.state.trucks} />} />
-        </Switch>
         <Link style={{ textDecoration: "none" }} to="/">
           <Footer />
         </Link>
+        </Switch>
+         ) }
+        { this.state.userType === 'owner' && (
+          <Switch>
+            <Route path='/owner'>
+              <OwnerPage />
+            </Route>
+          </Switch>
+        )}
       </div>
     );
   }
