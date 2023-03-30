@@ -52,27 +52,31 @@ class FilterForm extends React.Component<FilterFormProps, FilterFormState> {
 
     return (
       <div className="form-container">
-        <label>Choose a city:</label>
-        <select
-          className="drop-down"
-          onChange={(event) => this.setState({ city: event.target.value })}
-          name="city"
-          id="city"
-          value={this.state.city}
-        >
-          <option value="" disabled></option>
-          {cities.map((city, index) => (
-            <option key={index} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
+        <div className="select">
+          <label><strong>Choose a city:</strong></label>
+          <select
+            className="drop-down"
+            onChange={(event) => this.setState({ city: event.target.value })}
+            name="city"
+            id="city"
+            value={this.state.city}
+          >
+            <option value="" disabled></option>
+            {cities.map((city, index) => (
+              <option key={index} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="button-box">
         <button className="submit-state" onClick={this.handleClick}>
           Submit
         </button>
         <button className="reset-button" onClick={this.handleReset}>
           Back To All
         </button>
+        </div>
       </div>
     );
   }

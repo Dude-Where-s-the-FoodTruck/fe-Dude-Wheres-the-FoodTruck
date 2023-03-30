@@ -51,7 +51,7 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
           <Link to="/">
             <button className="go-to-events">Back to Events</button>
           </Link>
-          <img className="truck-image" src={truck.attributes.image_link}/>
+          <img className="truck-image" src={truck.attributes.image_link} alt="Food Truck Logo"/>
           <h1>{truck.attributes.name}</h1>
           <p><strong>Food Type:</strong> {truck.attributes.cuisine_type}</p>
           <p><strong>Where?:</strong> {truck?.relationships[0].attributes.city}</p>
