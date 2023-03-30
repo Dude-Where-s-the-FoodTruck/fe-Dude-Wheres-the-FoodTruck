@@ -3,6 +3,7 @@ import "./App.css";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import { MainPage } from "../MainPage/MainPage";
+import { LogIn } from "../LogIn/LogIn";
 import TruckDetails from "../TruckDetails/TruckDetails";
 import { Route, Switch, Link } from "react-router-dom";
 import { dummyData } from "../../apiCalls";
@@ -39,6 +40,7 @@ interface AppState {
   trucks: TruckData[];
   errors: string;
   filteredTrucks: TruckData[];
+  loggedIn: string;
 }
 
 class App extends React.Component<{}, AppState> {
@@ -46,6 +48,7 @@ class App extends React.Component<{}, AppState> {
     trucks: [],
     errors: "",
     filteredTrucks: [],
+    loggedIn: '',
   }
 
   componentDidMount(): void {
