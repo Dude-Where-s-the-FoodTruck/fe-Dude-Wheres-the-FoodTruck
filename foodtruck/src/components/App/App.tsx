@@ -80,9 +80,11 @@ class App extends React.Component<{}, AppState> {
   render() {
     return (
       <div className="main-page">
+        {!this.state.userType && <LogIn setUserType={this.setUserType} />}
         <Link style={{ textDecoration: "none" }} to="/">
           <Header />
         </Link>
+        { this.state.userType === 'user' && (
         <Switch>
           <Route exact path="/">
             <MainPage
@@ -93,10 +95,12 @@ class App extends React.Component<{}, AppState> {
             />
           </Route>
           <Route path="/foodtruck/:name" render={(props) => <TruckDetails {...props} truckData={this.state.trucks} />} />
-        </Switch>
         <Link style={{ textDecoration: "none" }} to="/">
           <Footer />
         </Link>
+        </Switch>
+         ) }
+         
       </div>
     );
   }
