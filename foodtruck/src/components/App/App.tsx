@@ -70,7 +70,7 @@ class App extends React.Component<{}, AppState> {
 
   render() {
     return (
-      <div>
+      <div className="main-page">
         <Link style={{ textDecoration: "none" }} to="/">
           <Header />
         </Link>

@@ -23,10 +23,12 @@ export const TruckCard: React.FC<TruckCardProps> = ({
       to={`/foodtruck/${name}`}
       style={{ textDecoration: "none", width: "300px", height: "400px" }}
     >
-      <div
-        className="card-container"
-        style={{ backgroundImage: `url(${image})` }}
-      >
+      <div className="card-info">
+        <div
+          className="card-container"
+          style={{ backgroundImage: `url(${image})` }}
+        >
+        </div>
         <div className="card-display">
           <h3 className="truck-name">{name}</h3>
           <p>{city}</p>

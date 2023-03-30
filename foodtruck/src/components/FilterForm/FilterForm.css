@@ -1,8 +1,132 @@
 .form-container {
-    margin-top: 80px;
+  margin-top: 90px;
+  width: 50em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
 }
 
-.drop-down {
-    width: 300px;
-    margin-left: 10px;
+select {
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  flex: 1 1;
+  padding: 0 1em;
+  color: black;
+  font-weight: bolder;
+  background-color: lightgray;
+  background-image: none;
+  cursor: pointer;
 }
+
+select::-ms-expand {
+  display: none;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  width: 30em;
+  height: 3em;
+  border-radius: 0.25em;
+  overflow: hidden;
+}
+
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+
+.select:hover::after {
+  color: #f39c12;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.submit-state,
+.reset-button {
+  height: 3.5em;
+  background-color: lightgray;
+  cursor: pointer;
+  transition: border-radius 0.3s ease-in-out;
+  font-weight: 800;
+}
+
+.button-box {
+  width: 16em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.submit-state:hover,
+.reset-button:hover {
+  background-color: #34495e;
+  border: 2px #f39c12 solid;
+  color: #f39c12;
+  border-radius: 50%;
+  transition: border-radius 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 1050px) {
+.select {
+  width: 30em;
+}
+}
+
+@media screen and (max-width: 780px) {
+  .select {
+    width: 25em;
+    margin-bottom: 5px;
+  }
+  .form-container {
+    margin-top: 90px;
+    width: 50em;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-content: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+.select {
+  width: 25em;
+  margin-bottom: 5px;
+}
+.form-container {
+  margin-top: 90px;
+  width: 50em;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-content: center;
+}
+}
+
+@media screen and (max-width: 391px) {
+  .select {
+    width: 25em;
+    margin-bottom: 5px;
+  }
+  .form-container {
+    margin-top: 90px;
+    width: 50em;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-content: center;
+  }
+  }

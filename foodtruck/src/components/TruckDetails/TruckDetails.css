@@ -1,22 +1,25 @@
 .TruckDetails {
-    display: flex;
-    justify-content: space-between;
-    height: 73vh;
+  display: flex;
+  justify-content: space-between;
+  height: 73vh;
+  padding-left: 14em;
+  padding-right: 14em;
+  align-items: center;
+  margin-top: 6em;
 }
 
 .not-map {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-left: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50em;
 }
 
 .map {
-     display: flex;
-    flex-direction: column;
-    margin-right: 1vh;
-    padding-top: 11vh;
+  display: flex;
+  flex-direction: column;
+  height: 50em;
 }
 
 .weblink-button {
@@ -33,10 +36,10 @@ p {
     padding: 13px
 }
 
-/* CSS */
+
 .go-to-events {
-  --b: 3px;   /* border thickness */
-  --s: .45em; /* size of the corner */
+  --b: 3px;   
+  --s: .45em; 
   --color: #373B44;
   
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
@@ -67,4 +70,18 @@ p {
 .go-to-events:active {
   background: var(--color);
   color: #fff;
+}
+
+
+@media screen and (max-width: 510px) {
+  .TruckDetails {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    padding-left: 14em;
+    padding-right: 14em;
+    align-items: center;
+    margin-top: 6em;
+    flex-direction: column;
+  }
 }

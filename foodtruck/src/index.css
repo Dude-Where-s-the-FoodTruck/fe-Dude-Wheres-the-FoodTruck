@@ -1,6 +1,64 @@
-html, #root,.App,body{
+html, #root,.App,body, .main-page{
   height: 100vh;
   width: 100vw;
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
 }
+
+/* body {
+  background-color: #fff; 
+  background-image: url('https://t3.ftcdn.net/jpg/02/59/76/90/240_F_259769013_LF1z6BRvhxL5ZadRdEcZxtoy6q9Lx3m8.jpg');
+  background-repeat: repeat; 
+  background-position: 0 0;
+  animation: raining-tacos 5s linear infinite;
+}
+
+@keyframes raining-tacos {
+  from {
+    background-position: 0 0; 
+  }
+  to {
+    background-position: 100% 100%;
+  }
+} */
+
+body{
+	margin:0;
+	padding:0;
+	font-family:"arial",heletica,sans-serif;
+	font-size:12px;
+    background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+	-webkit-animation: 10s linear 0s normal none infinite animate;
+	-moz-animation: 10s linear 0s normal none infinite animate;
+	-ms-animation: 10s linear 0s normal none infinite animate;
+	-o-animation: 10s linear 0s normal none infinite animate;
+	animation: 10s linear 0s normal none infinite animate;
+ 
+}
+ 
+@-webkit-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-moz-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-ms-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-o-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+
