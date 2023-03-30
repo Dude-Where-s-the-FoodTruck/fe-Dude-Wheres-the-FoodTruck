@@ -3,6 +3,7 @@ import "./App.css";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import { MainPage } from "../MainPage/MainPage";
+import { OwnerPage } from "../OwnerPage/OwnerPage";
 import { LogIn } from "../LogIn/LogIn";
 import TruckDetails from "../TruckDetails/TruckDetails";
 import { Route, Switch, Link } from "react-router-dom";
@@ -100,7 +101,13 @@ class App extends React.Component<{}, AppState> {
         </Link>
         </Switch>
          ) }
-         
+        { this.state.userType === 'owner' && (
+          <Switch>
+            <Route path='/owner'>
+              <OwnerPage />
+            </Route>
+          </Switch>
+        )}
       </div>
     );
   }
