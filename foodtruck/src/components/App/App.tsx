@@ -40,7 +40,7 @@ interface AppState {
   trucks: TruckData[];
   errors: string;
   filteredTrucks: TruckData[];
-  loggedIn: string;
+  userType: string;
 }
 
 class App extends React.Component<{}, AppState> {
@@ -48,13 +48,19 @@ class App extends React.Component<{}, AppState> {
     trucks: [],
     errors: "",
     filteredTrucks: [],
-    loggedIn: '',
+    userType: '',
   }
 
   componentDidMount(): void {
     this.setState({
       trucks: dummyData.map((d) => d.data),
     });
+  }
+
+  setUserType = (type: string): void => {
+    this.setState({
+      userType: type
+    })
   }
 
   getFilteredTrucks = (city: string): void => {
