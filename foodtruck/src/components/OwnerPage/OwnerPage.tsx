@@ -1,18 +1,27 @@
 import React from "react";
 import './OwnerPage.css'
+import headerLogo from '../../assets/foodtruck-logo.png'
+import { UserType } from "../App/App";
 
-interface OwnerPageState{}
+interface OwnerPageState{
+    userType: UserType
+}
 
-export class OwnerPage extends React.Component <{}, OwnerPageState>{
-    constructor(props: OwnerPageState){
-        super(props)
-        this.state = {}
-    }
+export const OwnerPage: React.FC <OwnerPageState> = ({userType}) => {
 
-    
-    render(){
-        return(<div className="stuff">Hello world!!</div>)
-    }
+    return(
+        <>
+            {userType === "owner" && (
+                <div>
+                    <header className="header">
+                        <img className="truck-logo" src={headerLogo} alt="food-truck-logo"/>
+                    </header>
+                </div>
+            )}
+        </>
+    )
+
+
 }
 
 
