@@ -23,10 +23,12 @@ export const LogIn: React.FC<LogInProps> = ({ setUserType }) => {
     }
 
     return(
-        <div>
+        <div className="login-container">
             <h1>Pick One!</h1>
-            <button onClick={handleUserClick}>I'm A hungry User</button>
-            <button onClick={handleOwnerClick}>I'm A Truck Owner</button>
+            <div className="button-container">
+                <button className="user-button" onClick={handleUserClick}>I'm A hungry User</button>
+                <button className="owner-button" onClick={handleOwnerClick}>I'm A Truck Owner</button>
+            </div>
         </div>
     )
 }
