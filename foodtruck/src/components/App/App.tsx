@@ -6,7 +6,7 @@ import { MainPage } from "../MainPage/MainPage";
 import { OwnerPage } from "../OwnerPage/OwnerPage";
 import { LogIn } from "../LogIn/LogIn";
 import TruckDetails from "../TruckDetails/TruckDetails";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { dummyData } from "../../apiCalls";
 
 interface TruckRelationshipAttributes {
@@ -90,36 +90,36 @@ class App extends React.Component<{}, AppState> {
           {this.state.userType === 'user' && (
             <>
             <Header />
+            <Switch>
+              <Route exact path="/main">
+                <MainPage
+                  truckData={this.state.trucks}
+                  filter={this.getFilteredTrucks}
+                  filteredTrucks={this.state.filteredTrucks}
+                  reset={this.resetFilteredTrucks}
+                />
+              </Route>
+              <Route 
+                path="/foodtruck/:name"
+                render={(props) => (
+                  <TruckDetails {...props} truckData={this.state.trucks}/>
+                )}
+              />
+              {this.state.userType === 'user' && <Redirect to='/main' />}
+            </Switch>
+            <Footer />
             </>
           )}
-        </Switch>
-        {/* {!this.state.userType && <LogIn setUserType={this.setUserType} />}
-        <Link style={{ textDecoration: "none" }} to="/">
-          <Header />
-        </Link>
-        { this.state.userType === 'user' && (
-        <Switch>
-          <Route exact path="/">
-            <MainPage
-              truckData={this.state.trucks}
-              filter={this.getFilteredTrucks}
-              filteredTrucks={this.state.filteredTrucks}
-              reset={this.resetFilteredTrucks}
-            />
-          </Route>
-          <Route path="/foodtruck/:name" render={(props) => <TruckDetails {...props} truckData={this.state.trucks} />} />
-        <Link style={{ textDecoration: "none" }} to="/">
-          <Footer />
-        </Link>
-        </Switch>
-         ) }
-        { this.state.userType === 'owner' && (
+        {this.state.userType === 'owner' && (
           <Switch>
-            <Route path='/owner'>
-              <OwnerPage />
+            <Route path="/owner">
+              <OwnerPage userType={this.state.userType}/>
             </Route>
+            {this.state.userType === "owner" && <Redirect to='/owner' />}
           </Switch>
-        )} */}
+        )}
+        {this.state.userType === null && <Redirect to='/' />}
+        </Switch>
       </div>
     );
   }
