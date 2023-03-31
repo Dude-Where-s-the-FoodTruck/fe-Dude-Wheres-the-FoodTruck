@@ -14,7 +14,7 @@ export class EditTruckForm extends React.Component<EditTruckFormProps> {
     render() {
         return (
             <div>
-                
+                <h1>this is edit truck form</h1>
             </div>
         )
     }
