@@ -11,7 +11,7 @@ export class OwnerPage extends React.Component <{}, OwnerPageState>{
 
     
     render(){
-        return(<div>Hello world!!</div>)
+        return(<div className="stuff">Hello world!!</div>)
     }
 }
 

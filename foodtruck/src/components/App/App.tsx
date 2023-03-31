@@ -37,11 +37,13 @@ export interface TruckData {
   relationships: TruckRelationships[];
 }
 
+export type UserType = 'user' | 'owner' | null
+
 interface AppState {
   trucks: TruckData[];
   errors: string;
   filteredTrucks: TruckData[];
-  userType: string;
+  userType: UserType;
 }
 
 class App extends React.Component<{}, AppState> {
@@ -49,7 +51,7 @@ class App extends React.Component<{}, AppState> {
     trucks: [],
     errors: "",
     filteredTrucks: [],
-    userType: '',
+    userType: null,
   }
 
   componentDidMount(): void {
@@ -58,7 +60,7 @@ class App extends React.Component<{}, AppState> {
     });
   }
 
-  setUserType = (type: string): void => {
+  setUserType = (type: UserType): void => {
     this.setState({
       userType: type
     })
@@ -81,7 +83,17 @@ class App extends React.Component<{}, AppState> {
   render() {
     return (
       <div className="main-page">
-        {!this.state.userType && <LogIn setUserType={this.setUserType} />}
+        <Switch>
+          <Route exact path="/">
+            <LogIn setUserType={this.setUserType}/>
+          </Route>
+          {this.state.userType === 'user' && (
+            <>
+            <Header />
+            </>
+          )}
+        </Switch>
+        {/* {!this.state.userType && <LogIn setUserType={this.setUserType} />}
         <Link style={{ textDecoration: "none" }} to="/">
           <Header />
         </Link>
@@ -107,7 +119,7 @@ class App extends React.Component<{}, AppState> {
               <OwnerPage />
             </Route>
           </Switch>
-        )}
+        )} */}
       </div>
     );
   }
