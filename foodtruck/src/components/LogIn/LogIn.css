@@ -1,0 +1,36 @@
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    width: 33em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.user-button,
+.owner-button {
+    height: 3.5em;
+    background-color: lightgray;
+    cursor: pointer;
+    transition: border-radius 0.3s ease-in-out;
+    font-weight: 800;
+}
+
+
+.user-button:hover,
+.owner-button:hover {
+    background-color: #34495e;
+    border: 2px #f39c12 solid;
+    color: #f39c12;
+    border-radius: 50%;
+    transition: border-radius 0.3s ease-in-out;
+}

@@ -48,7 +48,7 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
     return (
       <div className="TruckDetails">
         <span className='not-map'>
-          <Link to="/">
+          <Link to="/main">
             <button className="go-to-events">Back to Events</button>
           </Link>
           <img className="truck-image" src={truck.attributes.image_link} alt="Food Truck Logo"/>
