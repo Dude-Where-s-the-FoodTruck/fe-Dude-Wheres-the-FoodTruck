@@ -1,0 +1,34 @@
+
+
+{
+  "data": {
+      "id": "2",
+      "type": "food_truck",
+      "attributes": {
+          "name": "Bob's Burgers",
+          "cuisine_type": "American",
+          "web_link": "https://bobs-burgers.fandom.com/wiki/Bob%27s_Burgers_Wiki",
+          "image_link": "https://m.media-amazon.com/images/M/MV5BZGJiNmM1NDctNWUxYS00YzE4LWJjNTgtYTJhYzE0NjFmMTMwXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+          "events": [
+            {
+                            "id": 5,
+                            "food_truck_id": 2,
+                            "event_date": "2023-02-24",
+                            "latitude": 39.7516128,
+                            "longitude": -104.9901364,
+                            "start_time": "15:00",
+                            "end_time": "18:00",
+                            "description": "in parking lot near front entrance",
+                            "created_at": "2023-03-31T23:19:46.799Z",
+                            "updated_at": "2023-03-31T23:19:46.799Z",
+                            "city": "Denver"
+                          }
+          ]
+      },
+      "relationships": {
+          "events": {
+              "data": []
+          }
+      }
+  }
+}
