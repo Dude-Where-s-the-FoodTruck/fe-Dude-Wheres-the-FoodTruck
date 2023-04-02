@@ -2,35 +2,32 @@ import "./TruckCard.css";
 import { Link } from "react-router-dom";
 
 export interface TruckCardProps {
-  id: number;
-  name: string;
+  foodTruckId: string;
+  eventId: number;
+  truckName: string;
+  truckImageLink: string;
   city: string;
-  date: string;
-  cuisine: string;
-  website: string;
-  image: string;
+  date: string
 }
 
 export const TruckCard: React.FC<TruckCardProps> = ({
-  id,
-  name,
+  foodTruckId,
+  eventId,
+  truckName,
+  truckImageLink,
   city,
   date,
-  image,
 }) => {
   return (
-    <Link
-      to={`/foodtruck/${name}`}
-      style={{ textDecoration: "none", width: "300px", height: "400px" }}
-    >
+    <Link to={`/foodtruck/${foodTruckId}/${eventId}`} style={{ textDecoration: "none", width: "300px", height: "400px" }}>
       <div className="card-info">
-        <div
+      <div
           className="card-container"
-          style={{ backgroundImage: `url(${image})` }}
+          style={{ backgroundImage: `url(${truckImageLink})` }}
         >
         </div>
         <div className="card-display">
-          <h3 className="truck-name">{name}</h3>
+          <h3 className="truck-name">{truckName}</h3>
           <p>{city}</p>
           <p>{date}</p>
         </div>

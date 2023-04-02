@@ -1,7 +1,8 @@
 .truck-view {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 100%;
-    text-decoration: none;
-  }
+  max-width: 100%;
+  text-decoration: none;
+  height: 73vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

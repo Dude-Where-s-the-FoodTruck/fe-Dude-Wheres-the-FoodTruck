@@ -1,128 +1,163 @@
 import React from "react";
 import "./App.css";
+import { getTrucks } from "../../apiCalls";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import { MainPage } from "../MainPage/MainPage";
-import { OwnerPage } from "../OwnerPage/OwnerPage";
 import { LogIn } from "../LogIn/LogIn";
+import { OwnerPage } from "../OwnerPage/OwnerPage";
 import TruckDetails from "../TruckDetails/TruckDetails";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { dummyData } from "../../apiCalls";
 
-interface TruckRelationshipAttributes {
-  event_date: string;
-  city: string;
-  latitude: number;
-  longitude: number;
-  start_time: string;
-  description: string;
-}
-
-interface TruckRelationships {
+export interface Truck {
+  id: string;
   type: string;
-  id: number;
-  attributes: TruckRelationshipAttributes;
+  attributes: {
+    name: string;
+    cuisine_type: string;
+    web_link: string;
+    image_link: string;
+    events: {
+      id: number;
+      food_truck_id: number;
+      event_date: string;
+      latitude: number;
+      longitude: number;
+      start_time: string;
+      end_time: string;
+      description: string;
+      created_at: string;
+      updated_at: string;
+      city: string | null;
+    }[];
+  };
+  relationships: {
+    events: {
+      data: {
+        id: string;
+        type: string;
+      }[];
+    };
+  };
 }
 
-interface TruckAttributes {
-  name: string;
-  cuisine_type: string;
-  web_link: string;
-  image_link: string;
-}
-
-export interface TruckData {
-  id: number;
-  attributes: TruckAttributes;
-  relationships: TruckRelationships[];
-}
-
-export type UserType = 'user' | 'owner' | null
+export type UserType = string | null;
 
 interface AppState {
-  trucks: TruckData[];
+  trucks: {
+    data: Truck[];
+  };
   errors: string;
-  filteredTrucks: TruckData[];
+  filteredTrucks: Truck[];
   userType: UserType;
+  loading: boolean;
+  city: string;
 }
 
 class App extends React.Component<{}, AppState> {
-  state: AppState = {
-    trucks: [],
-    errors: "",
-    filteredTrucks: [],
-    userType: null,
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      trucks: { data: [] },
+      errors: "",
+      filteredTrucks: [],
+      userType: null,
+      loading: true,
+      city: '',
+    };
   }
 
-  componentDidMount(): void {
-    this.setState({
-      trucks: dummyData.map((d) => d.data),
-    });
+  async componentDidMount() {
+    try {
+      const storedState = localStorage.getItem('appState');
+      if (storedState) {
+        this.setState(JSON.parse(storedState));
+      } else {
+        const data = await getTrucks();
+        this.setState({
+          trucks: data,
+          loading: false,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  setUserType = (type: UserType): void => {
-    this.setState({
-      userType: type
-    })
+  componentDidUpdate() {
+    localStorage.setItem('appState', JSON.stringify(this.state));
   }
 
   getFilteredTrucks = (city: string): void => {
     const { trucks } = this.state;
-    const filtered = trucks.filter((truck) =>
-      truck.relationships.some(
-        (relationship) => relationship.attributes.city === city
-      )
+    const filtered = trucks.data.filter((truck) =>
+      truck.attributes.events.some((event) => event.city === city)
     );
-    this.setState({ filteredTrucks: filtered });
+    this.setState({ filteredTrucks: filtered, city: city });
   };
 
   resetFilteredTrucks = (): void => {
-    this.setState({ filteredTrucks: [] });
+    this.setState({ filteredTrucks: [], city: '' });
+  };
+
+  setUserType = (type: UserType): void => {
+    this.setState({
+      userType: type,
+    });
+  };
+
+  handleLogout = (): void => {
+    this.setState({ userType: null });
   };
 
   render() {
+    const { loading, trucks, userType, filteredTrucks, city } = this.state;
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <div className="main-page">
         <Switch>
           <Route exact path="/">
-            <LogIn setUserType={this.setUserType}/>
+            <LogIn setUserType={this.setUserType} />
           </Route>
-          {this.state.userType === 'user' && (
+          {userType === "user" && (
             <>
             <Header />
             <Switch>
               <Route exact path="/main">
                 <MainPage
-                  truckData={this.state.trucks}
+                  truckData={trucks}
                   filter={this.getFilteredTrucks}
-                  filteredTrucks={this.state.filteredTrucks}
+                  filteredTrucks={filteredTrucks}
                   reset={this.resetFilteredTrucks}
+                  city={city}
                 />
               </Route>
-              <Route 
-                path="/foodtruck/:name"
+              <Route
+                path="/foodtruck/:foodtruckID/:eventId"
                 render={(props) => (
-                  <TruckDetails {...props} truckData={this.state.trucks}/>
+                  <TruckDetails {...props} truckData={trucks} />
                 )}
               />
-              {this.state.userType === 'user' && <Redirect to='/main' />}
             </Switch>
             <Footer />
             </>
           )}
-        {this.state.userType === 'owner' && (
-          <Switch>
-            <Route path="/owner">
-              <OwnerPage userType={this.state.userType}/>
-            </Route>
-            {this.state.userType === "owner" && <Redirect to='/owner' />}
+          {this.state.userType === 'owner' && (
+            <Switch>
+              <Route path="/owner">
+                <OwnerPage userType={userType} ownerTrucks={trucks.data} />
+              </Route>
+              {this.state.userType === "owner" && <Redirect to='/owner' />}
+            </Switch>
+          )}
+          {this.state.userType === null && <Redirect to='/' />}
           </Switch>
-        )}
-        {this.state.userType === null && <Redirect to='/' />}
-        </Switch>
-      </div>
+        </div>
     );
   }
 }
 
-export default App;
+export default App

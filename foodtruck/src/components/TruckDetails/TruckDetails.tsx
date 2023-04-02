@@ -1,23 +1,26 @@
 import React from 'react';
 import './TruckDetails.css';
-import { TruckData } from '../App/App';
 import Map, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Link } from "react-router-dom";
+import { Truck } from "../App/App";
+
 
 interface TruckDetailsProps {
-  match: {
-    params: {
-      name: string
-    }
-  },
-  truckData: TruckData[]
-}
+    match: {
+      params: {
+        foodtruckID: string;
+        eventId: string;
+      };
+    };
+    truckData: { data: Truck[] };
+  }
 
-interface TruckDetailsState {
-  truck: TruckData | null;
-  isLoading: boolean;
-}
+  interface TruckDetailsState {
+    truck: Truck | null;
+    isLoading: boolean;
+    error?: Error;
+  }
 
 class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState> {
   state: TruckDetailsState = {
@@ -26,60 +29,80 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
   }
 
   componentDidMount(): void {
-    const truckName = this.props.match.params.name;
-    const truck = this.props.truckData.find(t => t.attributes.name === truckName);
-    if (truck) {
-      this.setState({ truck, isLoading: false });
-      localStorage.setItem('truck', JSON.stringify(truck));
-    } else {
-      const truckDataFromStorage = localStorage.getItem('truck');
-      if (truckDataFromStorage) {
-        this.setState({ truck: JSON.parse(truckDataFromStorage), isLoading: false });
-      }
-    }
+    const { foodtruckID, eventId } = this.props.match.params;
+    const apiUrl = `https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/${foodtruckID}`;
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const truck = {
+          id: data.data.id,
+          type: 'truck',
+          attributes: data.data.attributes,
+          relationships: Array.isArray(data.data.relationships) ? data.data.relationships.filter((event: { id: string }) => event.id === eventId) : [],
+        };
+        this.setState({ truck, isLoading: false });
+        localStorage.setItem("truck", JSON.stringify(truck));
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ error, isLoading: false });
+      });
   }
-  
+
   render() {
     const MAPBOX_TOKEN = "pk.eyJ1IjoiamF5c21pdGg2MDM1IiwiYSI6ImNsZXEzMDZzODA5NGIzc3BoNTZxeTcyNGUifQ.o85HEkHjse8_WF-O5_d7jg"
-    const { truck } = this.state;
-    if (!truck) {
+    const { truck, isLoading, error } = this.state;
+    // console.log(truck?.attributes.name)
+    if (isLoading) {
       return <div>Loading...</div>;
     }
+    if (error) {
+      return <div>{error.message}</div>;
+    }
+    const { foodtruckID, eventId } = this.props.match.params;
+    const events = this.props.truckData.data.find(t => t.id === foodtruckID)?.attributes?.events ?? [];
+    const event = events.find(e => e.id === parseInt(eventId));
+    const city = event?.city ?? "N/A";
+    const description = event?.description ?? "N/A";
     return (
       <div className="TruckDetails">
         <span className='not-map'>
-          <Link to="/main">
-            <button className="go-to-events">Back to Events</button>
-          </Link>
-          <img className="truck-image" src={truck.attributes.image_link} alt="Food Truck Logo"/>
-          <h1>{truck.attributes.name}</h1>
-          <p><strong>Food Type:</strong> {truck.attributes.cuisine_type}</p>
-          <p><strong>Where?:</strong> {truck?.relationships[0].attributes.city}</p>
-          <p><strong>Description of Location:</strong> {truck?.relationships[0].attributes.description}</p>
-          <a className="weblink-button" href={truck.attributes.web_link} target="_blank" rel="noopener noreferrer">Visit The Website</a>
+            <Link to="/main">
+              <button className="go-to-events">Back to Events</button>
+            </Link>
+            {truck && (
+              <div className='grouped-truck-details'>
+                <img className="truck-image" src={truck.attributes.image_link} alt="Food Truck Logo"/>
+                <h1>{truck.attributes.name}</h1>
+                <p><strong>Food Type:</strong> {truck.attributes.cuisine_type}</p>
+                <p><strong>Where?:</strong> {city}</p>
+                <p><strong>Description of Location:</strong> {description}</p>
+                <a className="weblink-button" href={truck.attributes.web_link} target="_blank" rel="noopener noreferrer">Visit The Website</a>
+              </div>
+            )}
         </span>
         <span className='map'>
           <p><strong>We Are Here!</strong></p>
           <div style={{ border: "1px solid black", width: "30vw", height: "30vw" }}>
-        <Map
-            initialViewState={{
-              latitude: truck.relationships[0].attributes.latitude,
-              longitude: truck.relationships[0].attributes.longitude,
-              zoom: 18,
-            }}
-            style={{
-              width: "30vw",
-              height: "30vw",
-            }}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
-            mapboxAccessToken={MAPBOX_TOKEN}
-          >
-            <Marker
-              longitude={truck.relationships[0].attributes.longitude}
-              latitude={truck.relationships[0].attributes.latitude}
-              color="red"
-            />
-          </Map>
+            <Map
+              initialViewState={{
+                latitude: event?.latitude ?? 0,
+                longitude: event?.longitude ?? 0,
+                zoom: 18,
+              }}
+              style={{
+                width: "30vw",
+                height: "30vw",
+              }}
+              mapStyle="mapbox://styles/mapbox/streets-v9"
+              mapboxAccessToken={MAPBOX_TOKEN}
+            >
+              <Marker
+                longitude={event?.longitude ?? 0}
+                latitude={event?.latitude ?? 0}
+                color="red"
+              />
+            </Map>
           </div>
         </span>
       </div>
