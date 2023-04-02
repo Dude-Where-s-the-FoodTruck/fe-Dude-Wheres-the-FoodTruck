@@ -1,10 +1,10 @@
 import React from "react";
-import './LogIn.css'
+import "./LogIn.css";
 import { UserType } from "../App/App";
 import { useHistory } from "react-router-dom";
 
-interface LogInProps{ 
-    setUserType: (userType: UserType) => void
+interface LogInProps { 
+    setUserType: (type: UserType) => void
 }
 
 export const LogIn: React.FC<LogInProps> = ({ setUserType }) => {

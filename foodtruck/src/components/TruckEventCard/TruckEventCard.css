@@ -1,0 +1,30 @@
+.event-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: 0;
+    padding: 0;
+    justify-content: space-around;
+    font-weight: 600;
+    background-color: rgba(41, 128, 185, 0.9);
+    height: 6.25em;
+    align-items: center;
+    border-radius: 50px 50px 50px 50px / 40px 40px 40px 40px;
+    font-size: 13px;
+    border: 1px solid black;
+    box-shadow: 13px 12px 21px -5px rgba(5,0,0,0.6);
+    -webkit-box-shadow: 13px 12px 21px -5px rgba(5,0,0,0.6);
+    -moz-box-shadow: 13px 12px 21px -5px rgba(5,0,0,0.6);
+    cursor: pointer;
+    color: rgba(243, 156, 18, .9);
+}
+
+
+.event-card-container:hover {
+    box-shadow: 28px 30px 32px 0px rgba(5,0,0,0.6);
+    -webkit-box-shadow: 28px 30px 32px 0px rgba(5,0,0,0.6);
+    -moz-box-shadow: 28px 30px 32px 0px rgba(5,0,0,0.6);
+    background-color: rgb(12, 131, 211);
+    color: white;
+}

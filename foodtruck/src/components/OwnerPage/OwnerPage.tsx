@@ -1,31 +1,70 @@
 import React from "react";
-import './OwnerPage.css'
-import headerLogo from '../../assets/foodtruck-logo.png'
-import { UserType } from "../App/App";
+import "./OwnerPage.css";
+import headerLogo from "../../assets/foodtruck-logo.png";
+import { Truck } from "../App/App";
 import { TruckEvents } from "../TruckEvents/TruckEvents";
 import { EditTruckForm } from "../EditTruckForm/EditTruckForm";
+import { UpdateEventForm } from "../UpdateEventForm/UpdateEventForm";
+import { CreateEventForm } from "../CreateEventForm/CreateEventForm";
+import { Link, Switch, Route } from "react-router-dom";
 
-interface OwnerPageState{
-    userType: UserType
+interface OwnerPageProps {
+  userType: string | null;
+  ownerTrucks: Truck[];
 }
 
-export const OwnerPage: React.FC <OwnerPageState> = ({userType}) => {
-
-    return(
-        <>
-            {userType === "owner" && (
-                <div>
-                    <header className="header">
-                        <img className="truck-logo" src={headerLogo} alt="food-truck-logo"/>
-                    </header>
-                    <TruckEvents />
-                    <EditTruckForm />
-                </div>
-            )}
-        </>
-    )
+export const OwnerPage: React.FC<OwnerPageProps> = ({
+  userType,
+  ownerTrucks = [],
+}) => {
 
 
-}
+  // filter owner trucks by selected truck id
+  const filteredOwnerTrucks = ownerTrucks.filter(
+    (truck) => truck.id === "1"
+  );
 
+  console.log(filteredOwnerTrucks)
+
+  return (
+    <>
+      {userType === "owner" && (
+        <div className="owner-page-view">
+          <header className="header">
+            <Link to="/owner">
+              <img
+                className="truck-logo"
+                src={headerLogo}
+                alt="food-truck-logo"
+              />
+            </Link>
+            <div className="add-event-link">
+              <Link to="/owner/create-event" className="add-event-button" style={{textDecoration: "none"}}>
+                Add Event
+              </Link>
+            </div>
+          </header>
+          <div className="events-edit-container">
+            <Switch>
+              <Route exact path="/owner">
+                <TruckEvents ownerTrucks={filteredOwnerTrucks} />
+                <EditTruckForm />
+              </Route>
+              <Route path="/owner/events/:eventId">
+                <UpdateEventForm ownerTrucks={filteredOwnerTrucks} />
+              </Route>
+              <Route path="/owner/create-event">
+                <CreateEventForm ownerTrucks={filteredOwnerTrucks} />
+              </Route>
+            </Switch>
+          </div>
+          <footer className="footer">
+            <h3 className="footer-name">© Dude, Where's The FoodTruck</h3>
+            <p className="footer-city">Denver, CO</p>
+          </footer>
+        </div>
+      )}
+  </>
+  );
+};
 

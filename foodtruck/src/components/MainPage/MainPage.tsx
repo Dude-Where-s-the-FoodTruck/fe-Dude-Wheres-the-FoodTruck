@@ -1,21 +1,26 @@
-import React from 'react';
 import './MainPage.css';
-import FilterForm from '../FilterForm/FilterForm';
+import { Truck } from "../App/App";
 import { Trucks } from '../Trucks/Trucks';
-import { TruckData } from '../App/App';
+import FilterForm from '../FilterForm/FilterForm';
 
 interface MainPageProps {
-  truckData: TruckData[];
+  truckData: {
+    data: Truck[];
+  };
   filter: (city: string) => void;
-  filteredTrucks: TruckData[];
+  filteredTrucks: Truck[];
   reset: () => void;
+  city: string;
 }
 
-export const MainPage: React.FC<MainPageProps> = ({ truckData, filter, filteredTrucks, reset }) => {
+export const MainPage: React.FC<MainPageProps> = ({ truckData, filter, filteredTrucks, reset, city }) => {
+  // console.log(truckData.data.map((truck) => truck.attributes.name))
   return (
     <div className='truck-view'>
-      <FilterForm truckData={truckData} filter={filter} filteredTrucks={filteredTrucks} reset={reset} />
-      <Trucks truckData={filteredTrucks.length ? filteredTrucks : truckData} />
+      <FilterForm truckData={truckData} filteredTrucks={filteredTrucks} filter={filter} reset={reset} />
+      <Trucks truckData={filteredTrucks.length ? filteredTrucks : truckData.data} city={city} />
     </div>
   );
 };
+
+export default MainPage;

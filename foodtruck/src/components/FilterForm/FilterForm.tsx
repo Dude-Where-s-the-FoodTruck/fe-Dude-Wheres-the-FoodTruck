@@ -1,11 +1,13 @@
 import "./FilterForm.css";
-import React from "react";
-import { TruckData } from "../App/App";
+import React, { Component } from "react";
+import { Truck } from "../App/App";
 
 interface FilterFormProps {
-  truckData: TruckData[];
+  truckData: {
+    data: Truck[];
+  };
   filter: (city: string) => void;
-  filteredTrucks: TruckData[];
+  filteredTrucks: Truck[];
   reset: () => void;
 }
 
@@ -13,7 +15,7 @@ interface FilterFormState {
   city: string;
 }
 
-class FilterForm extends React.Component<FilterFormProps, FilterFormState> {
+class FilterForm extends Component<FilterFormProps, FilterFormState> {
   constructor(props: FilterFormProps) {
     super(props);
     this.state = {
@@ -24,36 +26,39 @@ class FilterForm extends React.Component<FilterFormProps, FilterFormState> {
   handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const { city } = this.state;
+    console.log(city)
     const { filter } = this.props;
     filter(city);
-    this.setState({city:""})
+    this.setState({ city: "" });
   };
 
   handleReset = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const { reset } = this.props;
     reset();
-    this.setState({city:""})
+    this.setState({ city: "" });
   };
 
   render() {
-    const { truckData } = this.props;
+    const { truckData, filteredTrucks } = this.props;
     const cities = [
       ...new Set(
-        [...truckData]
-          .map((truck: TruckData) =>
-            truck.relationships.map(
-              (relationship) => relationship.attributes.city
+        filteredTrucks.length > 0
+          ? filteredTrucks.flatMap((truck: Truck) =>
+              truck.attributes.events.map((event: any) => event.city)
             )
-          )
-          .flat()
+          : truckData.data.flatMap((truck: Truck) =>
+              truck.attributes.events.map((event: any) => event.city)
+            )
       ),
-    ];
+    ].filter((city) => city !== null);
 
     return (
       <div className="form-container">
         <div className="select">
-          <label><strong>Choose a city:</strong></label>
+          <label>
+            <strong>Choose a city:</strong>
+          </label>
           <select
             className="drop-down"
             onChange={(event) => this.setState({ city: event.target.value })}
@@ -70,17 +75,16 @@ class FilterForm extends React.Component<FilterFormProps, FilterFormState> {
           </select>
         </div>
         <div className="button-box">
-        <button className="submit-state" onClick={this.handleClick}>
-          Submit
-        </button>
-        <button className="reset-button" onClick={this.handleReset}>
-          Back To All
-        </button>
+          <button className="submit-state" onClick={this.handleClick}>
+            Submit
+          </button>
+          <button className="reset-button" onClick={this.handleReset}>
+            Back To All
+          </button>
         </div>
       </div>
     );
   }
 }
 
-
-export default FilterForm
+export default FilterForm;
