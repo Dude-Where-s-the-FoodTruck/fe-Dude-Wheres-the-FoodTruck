@@ -5,6 +5,7 @@ import { Truck } from "../App/App";
 
 interface UpdateEventFormProps {
   ownerTrucks: Truck[];
+  fetchTrucks: () => Promise<void>;
 }
 
 interface EventData {
@@ -28,49 +29,79 @@ interface ResponseData {
   };
 }
 
-export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks }) => {
+export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks, fetchTrucks, }) => {
+  console.log(ownerTrucks)
   const history = useHistory();
-  const { id } = useParams<{ id: string }>();
+  const { eventId } = useParams<{ eventId: string }>();
+  const event = ownerTrucks[0].attributes.events.find((e) => e.id === Number(eventId));
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-  
+    const eventData: EventData = {
+      event_date: (document.getElementById("event_date") as HTMLInputElement)
+        .value,
+      start_time: (document.getElementById("start_time") as HTMLInputElement)
+        .value,
+      end_time: (document.getElementById("end_time") as HTMLInputElement)
+        .value,
+      description: (
+        document.getElementById("description") as HTMLInputElement
+      ).value,
+      address: {
+        street: (document.getElementById("street") as HTMLInputElement).value,
+        city: (document.getElementById("city") as HTMLInputElement).value,
+        state: (document.getElementById("state") as HTMLInputElement).value,
+        zip: (document.getElementById("zip") as HTMLInputElement).value,
+      }
+    };
+
+    const url = `https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/${ownerTrucks[0].id}/events/${eventId}`;
+
     try {
-      const eventData: EventData = {
-        event_date: (document.getElementById("event_date") as HTMLInputElement)
-          .value,
-        start_time: (document.getElementById("start_time") as HTMLInputElement)
-          .value,
-        end_time: (document.getElementById("end_time") as HTMLInputElement)
-          .value,
-        description: (document.getElementById(
-          "description"
-        ) as HTMLInputElement).value,
-        address: {
-          street: (document.getElementById("street") as HTMLInputElement).value,
-          city: (document.getElementById("city") as HTMLInputElement).value,
-          state: (document.getElementById("state") as HTMLInputElement).value,
-          zip: (document.getElementById("zip") as HTMLInputElement).value,
-        },
-      };
-  
-      const response: ResponseData = {
-        data: {
-          id: parseInt(id),
-          attributes: eventData,
-          relationships: { foodtruck_id: 1 }, // Replace 1 with the actual food truck ID
-        },
-      };
-  
-      console.log(response.data);
-      history.push("/owner"); // Replace with the actual route to go to after submission
+      const response = await fetch(url, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(eventData),
+      });
+
+      if (response.ok) {
+        const responseData: ResponseData = await response.json();
+        console.log(responseData);
+        (document.getElementById("event_date") as HTMLInputElement).value = "";
+        (document.getElementById("start_time") as HTMLInputElement).value = "";
+        (document.getElementById("end_time") as HTMLInputElement).value = "";
+        (document.getElementById("description") as HTMLInputElement).value = "";
+        (document.getElementById("street") as HTMLInputElement).value = "";
+        (document.getElementById("city") as HTMLInputElement).value = "";
+        (document.getElementById("state") as HTMLInputElement).value = "";
+        (document.getElementById("zip") as HTMLInputElement).value = "";
+        history.push("/owner");
+        fetchTrucks()
+
+      } else {
+        console.error(response.statusText);
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
+
   return (
     <div className="update-form-wrapper-container">
+      <div className="event-details">
+        
+        {event && (
+          <div>
+            <h3>Current Event Details</h3>
+            <p>City: {event.city}</p>
+            <p>Description: {event.description}</p>
+            <p>Event Date: {event.event_date}</p>
+            <p>Start Time: {event.start_time}</p>
+            <p>End Time: {event.end_time}</p>
+          </div>
+        )}
+      </div>
       <div className="update-back-home">
         <Link to="/owner">
           <button className="back-to-owner">Back to Home</button>

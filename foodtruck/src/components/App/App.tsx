@@ -71,14 +71,24 @@ class App extends React.Component<{}, AppState> {
     try {
       const storedState = localStorage.getItem('appState');
       if (storedState) {
-        this.setState(JSON.parse(storedState));
-      } else {
-        const data = await getTrucks();
-        this.setState({
-          trucks: data,
-          loading: false,
+        this.setState(JSON.parse(storedState), async () => {
+          await this.fetchTrucks();
         });
+      } else {
+        await this.fetchTrucks();
       }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  fetchTrucks = async () => {
+    try {
+      const data = await getTrucks();
+      this.setState({
+        trucks: data,
+        loading: false,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -109,6 +119,7 @@ class App extends React.Component<{}, AppState> {
   handleLogout = (): void => {
     this.setState({ userType: null });
   };
+  
 
   render() {
     const { loading, trucks, userType, filteredTrucks, city } = this.state;
@@ -148,7 +159,7 @@ class App extends React.Component<{}, AppState> {
           {this.state.userType === 'owner' && (
             <Switch>
               <Route path="/owner">
-                <OwnerPage userType={userType} ownerTrucks={trucks.data} />
+                <OwnerPage userType={userType} ownerTrucks={trucks.data} fetchTrucks={this.fetchTrucks}/>
               </Route>
               {this.state.userType === "owner" && <Redirect to='/owner' />}
             </Switch>

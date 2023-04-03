@@ -1,23 +1,19 @@
-import "./CreateEventForm.css";
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Truck } from "../App/App";
 
 interface CreateEventFormProps {
   ownerTrucks: Truck[];
+  fetchTrucks: () => Promise<void>;
 }
 
 interface EventData {
   event_date: string;
+  location: string;
   start_time: string;
   end_time: string;
   description: string;
-  address: {
-    street: string;
-    city: string;
-    state: string;
-    zip: string;
-  };
+  city: string;
 }
 
 interface ResponseData {
@@ -29,41 +25,61 @@ interface ResponseData {
 
 export const CreateEventForm: React.FC<CreateEventFormProps> = ({
   ownerTrucks,
+  fetchTrucks,
 }) => {
-  console.log(ownerTrucks);
   const history = useHistory();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    const truck_id = (document.getElementById(
+      "foodtruck"
+    ) as HTMLSelectElement).value;
+  
+    const eventData: EventData = {
+      event_date: (document.getElementById("event_date") as HTMLInputElement)
+        .value,
+      start_time: (document.getElementById("start_time") as HTMLInputElement)
+        .value,
+      end_time: (document.getElementById("end_time") as HTMLInputElement)
+        .value,
+      description: (
+        document.getElementById("description") as HTMLInputElement
+      ).value,
+      location: (
+        document.getElementById("street") as HTMLInputElement
+      ).value,
+      city: (document.getElementById("city") as HTMLInputElement).value,
+    };
+    console.log(eventData);
+  
+    const url = `https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/${truck_id}/events`;
+  
     try {
-      const eventData: EventData = {
-        event_date: (document.getElementById("event_date") as HTMLInputElement)
-          .value,
-        start_time: (document.getElementById("start_time") as HTMLInputElement)
-          .value,
-        end_time: (document.getElementById("end_time") as HTMLInputElement)
-          .value,
-        description: (
-          document.getElementById("description") as HTMLInputElement
-        ).value,
-        address: {
-          street: (document.getElementById("street") as HTMLInputElement).value,
-          city: (document.getElementById("city") as HTMLInputElement).value,
-          state: (document.getElementById("state") as HTMLInputElement).value,
-          zip: (document.getElementById("zip") as HTMLInputElement).value,
-        },
-      };
-
-      const response: ResponseData = {
-        data: {
-          attributes: eventData,
-          relationships: { foodtruck_id: 1 }, // Replace 1 with the actual food truck ID
-        },
-      };
-
-      console.log(response.data);
-      history.push("/owner"); // Replace with the actual route to go to after submission
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(eventData),
+      });
+  
+      if (response.ok) {
+        const responseData: ResponseData = await response.json();
+        console.log(responseData);
+  
+        // Reset form inputs
+        (document.getElementById("foodtruck") as HTMLSelectElement).selectedIndex = 0;
+        (document.getElementById("event_date") as HTMLInputElement).value = "";
+        (document.getElementById("start_time") as HTMLInputElement).value = "";
+        (document.getElementById("end_time") as HTMLInputElement).value = "";
+        (document.getElementById("description") as HTMLInputElement).value = "";
+        (document.getElementById("street") as HTMLInputElement).value = "";
+        (document.getElementById("city") as HTMLInputElement).value = "";
+  
+        fetchTrucks();
+    
+        history.push("/owner");
+      } else {
+        console.error(response.statusText);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -80,14 +96,14 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
         <div className="create-form-wrapper">
           <form onSubmit={handleSubmit} className="create-form">
             <div className="form-group">
-                <label htmlFor="foodtruck">Select Truck:</label>
-                <select id="foodtruck" name="foodtruck">
-                    {ownerTrucks.map((truck) => (
-                    <option value={truck.id} key={truck.id}>
-                        {truck.attributes.name}
-                    </option>
-                    ))}
-                </select>
+              <label htmlFor="foodtruck">Select Truck:</label>
+              <select id="foodtruck" name="foodtruck">
+                {ownerTrucks.map((truck) => (
+                  <option value={truck.id} key={truck.id}>
+                    {truck.attributes.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="form-group">
               <label htmlFor="event_date">Event Date:</label>
@@ -102,13 +118,12 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
               <input type="time" id="end_time" name="end_time" required />
             </div>
             <div className="form-group">
-              <label htmlFor="description">Location Description:</label>
+              <label htmlFor="description">Event Description:</label>
               <textarea
                 id="description"
-                className="text-area"
                 name="description"
-                style={{ resize: "none" }}
-                maxLength={200}
+                rows={3}
+                maxLength={140}
                 required
               />
             </div>
@@ -121,17 +136,7 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
               <input type="text" id="city" name="city" required />
             </div>
             <div className="form-group">
-              <label htmlFor="state">State:</label>
-              <input type="text" id="state" name="state" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="zip">Zip Code:</label>
-              <input type="text" id="zip" name="zip" required />
-            </div>
-            <div className="create-button-container">
-              <button type="submit" className="create-button">
-                Create Event
-              </button>
+              <button type="submit">Create Event</button>
             </div>
           </form>
         </div>

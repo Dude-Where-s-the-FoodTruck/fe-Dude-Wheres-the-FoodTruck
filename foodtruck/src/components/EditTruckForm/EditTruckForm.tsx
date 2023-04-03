@@ -1,7 +1,9 @@
 import './EditTruckForm.css';
 import React from 'react';
 
-interface EditTruckFormProps {}
+interface EditTruckFormProps {
+  fetchTrucks: () => Promise<void>;
+}
 
 interface EditTruckFormState {
   name: string;
@@ -67,7 +69,7 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
       });
       const data = await response.json();
       console.log('Response:', data);
-  
+      this.props.fetchTrucks()
       // Clear fields on success
       this.setState({ name: '', website: '', cuisine: 'Select Cuisine', photo: '' });
     } catch (error) {
@@ -102,7 +104,6 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
             type="text" 
             value={this.state.photo}  
             onChange={this.handlePhotoChange} 
-            placeholder='Photo Link'
           />
           <br />
           <div className='select'>
