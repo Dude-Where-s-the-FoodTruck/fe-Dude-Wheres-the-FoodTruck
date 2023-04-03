@@ -22,7 +22,7 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
 
   // filter owner trucks by selected truck id
   const filteredOwnerTrucks = ownerTrucks.filter(
-    (truck) => truck.id === "1"
+    (truck) => truck.id === "2"
   );
 
 
@@ -45,7 +45,7 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
             </div>
           </header>
           <div className="change-user-container">
-            <Link to="/" style={{textDecoration: "none"}}>
+            <Link to="/" style={{textDecoration: 'none'}}>
               <button className="change-user">Change User</button>
             </Link>
           </div>
@@ -53,7 +53,7 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
             <Switch>
               <Route exact path="/owner">
                 <TruckEvents ownerTrucks={filteredOwnerTrucks} />
-                <EditTruckForm fetchTrucks={fetchTrucks} />
+                <EditTruckForm fetchTrucks={fetchTrucks} filteredOwnerTrucks={filteredOwnerTrucks}/>
               </Route>
               <Route path="/owner/events/:eventId">
                 <UpdateEventForm ownerTrucks={filteredOwnerTrucks} fetchTrucks={fetchTrucks}/>

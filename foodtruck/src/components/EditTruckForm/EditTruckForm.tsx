@@ -1,8 +1,10 @@
 import './EditTruckForm.css';
 import React from 'react';
+import { Truck } from '../App/App';
 
 interface EditTruckFormProps {
   fetchTrucks: () => Promise<void>;
+  filteredOwnerTrucks: Truck[];
 }
 
 interface EditTruckFormState {
@@ -49,6 +51,7 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
   handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { name, website, cuisine, photo } = this.state;
+    const truckId = this.props.filteredOwnerTrucks[0].id
   
     // Check if all fields are filled out
     if (!name || !website || cuisine === 'Select Cuisine' || !photo) {
@@ -63,7 +66,7 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
     formData.append('image', photo);
   
     try {
-      const response = await fetch('https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/1', {
+      const response = await fetch(`https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/${truckId}`, {
         method: 'PATCH',
         body: formData,
       });
@@ -101,10 +104,10 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
           <br />
           <input 
             className="input-photo"
-            type="text" 
+            type="text"
             value={this.state.photo}  
             onChange={this.handlePhotoChange} 
-            placeholder="Photo Link"
+            placeholder='Photo Link'
           />
           <br />
           <div className='select'>
