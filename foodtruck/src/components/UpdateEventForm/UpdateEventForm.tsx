@@ -13,12 +13,13 @@ interface EventData {
   start_time: string;
   end_time: string;
   description: string;
-  address: {
+  location: {
     street: string;
     city: string;
     state: string;
     zip: string;
   };
+  city: string;
 }
 
 interface ResponseData {
@@ -47,16 +48,17 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks, f
       description: (
         document.getElementById("description") as HTMLInputElement
       ).value,
-      address: {
+      location: {
         street: (document.getElementById("street") as HTMLInputElement).value,
         city: (document.getElementById("city") as HTMLInputElement).value,
         state: (document.getElementById("state") as HTMLInputElement).value,
         zip: (document.getElementById("zip") as HTMLInputElement).value,
-      }
+      },
+      city: (document.getElementById("city") as HTMLInputElement).value,
     };
-
+    console.log(eventData)
     const url = `https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/${ownerTrucks[0].id}/events/${eventId}`;
-
+    console.log(eventData)
     try {
       const response = await fetch(url, {
         method: "PATCH",

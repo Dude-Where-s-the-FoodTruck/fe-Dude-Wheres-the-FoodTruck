@@ -8,7 +8,6 @@ import { LogIn } from "../LogIn/LogIn";
 import { OwnerPage } from "../OwnerPage/OwnerPage";
 import TruckDetails from "../TruckDetails/TruckDetails";
 import { Route, Switch, Redirect } from "react-router-dom";
-
 export interface Truck {
   id: string;
   type: string;
@@ -40,9 +39,7 @@ export interface Truck {
     };
   };
 }
-
 export type UserType = string | null;
-
 interface AppState {
   trucks: {
     data: Truck[];
@@ -53,7 +50,6 @@ interface AppState {
   loading: boolean;
   city: string;
 }
-
 class App extends React.Component<{}, AppState> {
   constructor(props: {}) {
     super(props);
@@ -66,7 +62,6 @@ class App extends React.Component<{}, AppState> {
       city: '',
     };
   }
-
   async componentDidMount() {
     try {
       const storedState = localStorage.getItem('appState');
@@ -78,10 +73,9 @@ class App extends React.Component<{}, AppState> {
         await this.fetchTrucks();
       }
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }
-  
   fetchTrucks = async () => {
     try {
       const data = await getTrucks();
@@ -90,14 +84,12 @@ class App extends React.Component<{}, AppState> {
         loading: false,
       });
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }
-
   componentDidUpdate() {
     localStorage.setItem('appState', JSON.stringify(this.state));
   }
-
   getFilteredTrucks = (city: string): void => {
     const { trucks } = this.state;
     const filtered = trucks.data.filter((truck) =>
@@ -105,28 +97,22 @@ class App extends React.Component<{}, AppState> {
     );
     this.setState({ filteredTrucks: filtered, city: city });
   };
-
   resetFilteredTrucks = (): void => {
     this.setState({ filteredTrucks: [], city: '' });
   };
-
   setUserType = (type: UserType): void => {
     this.setState({
       userType: type,
     });
   };
-
   handleLogout = (): void => {
     this.setState({ userType: null });
   };
-  
-
   render() {
     const { loading, trucks, userType, filteredTrucks, city } = this.state;
     if (loading) {
       return <div>Loading...</div>;
     }
-
     return (
       <div className="main-page">
         <Switch>
@@ -170,5 +156,10 @@ class App extends React.Component<{}, AppState> {
     );
   }
 }
-
 export default App
+
+
+
+
+
+
