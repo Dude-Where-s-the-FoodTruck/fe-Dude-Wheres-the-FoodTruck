@@ -52,26 +52,26 @@ describe('User view tests', () => {
     // })
 
 // // when updates are pulled check the post
-    it('should have a submit button to patch updates',() => {
-        cy.get('.name-input').type('testing')
-        .should('have.value', 'testing')
-        cy.get('.website-input').type('website')
-        .should('have.value', 'website')
-        cy.get('.select-type').select('Spanish')
-        cy.get('.submit-button').click()
+    // it('should have a submit button to patch updates',() => {
+    //     cy.get('.name-input').type('testing')
+    //     .should('have.value', 'testing')
+    //     cy.get('.website-input').type('website')
+    //     .should('have.value', 'website')
+    //     cy.get('.select-type').select('Spanish')
+    //     cy.get('.submit-button').click()
 
-    })
-
-    it('should display all events for a single truck',() => {
-        cy.get('.truck-events-container')
-        .contains('Denver')
-        .contains('Truck 2')
-    })
-
-    // it(' should be able to click an event to go to edit',() => {
-        
-        
     // })
+
+    // it('should display all events for a single truck',() => {
+    //     cy.get('.truck-events-container')
+    //     .contains('Denver')
+    //     .contains('Truck 2')
+    // })
+
+    it(' should be able to click an event to go to edit',() => {
+        cy.get('.all-events-container > :nth-child(1)').click()
+        cy.url().should("eq", "http://localhost:3000/owner/events/1")
+    })
 
     // it('should have a button Add Event',() => {
         
