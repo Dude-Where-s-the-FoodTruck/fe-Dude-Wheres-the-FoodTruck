@@ -38,9 +38,9 @@ describe('User view tests', () => {
     
     // // })
 
-    // it('should have button Create Event',() => {
-    //     cy.get('.create-button').contains('Create Event')
-    // })
+    it('should have button Create Event',() => {
+        cy.get('.create-button').contains('Create Event')
+    })
 
     // it('should have button Back to home',() => {
     //     cy.get('.back-to-owner').click()
