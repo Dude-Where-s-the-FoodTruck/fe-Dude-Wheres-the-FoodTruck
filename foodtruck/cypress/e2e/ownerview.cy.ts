@@ -7,10 +7,10 @@ describe('User view tests', () => {
       .click()
     })
 
-    // it('should have a header and footer',() => {
-    //     cy.get('.header').contains('Add Event')
-    //     cy.get('.footer').contains("© Dude, Where's The FoodTruck")
-    // })
+    it('should have a header and footer',() => {
+        cy.get('.header').contains('Add Event')
+        cy.get('.footer').contains("© Dude, Where's The FoodTruck")
+    })
 
     // it('should have a button Add Event',() => {
     //     cy.get('.add-event-button').contains('Add Event').click()
