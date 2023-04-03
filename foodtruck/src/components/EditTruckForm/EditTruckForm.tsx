@@ -102,7 +102,7 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
           <label htmlFor="file">Choose a file</label>
           <br />
           <div className='select'>
-            <select value={this.state.cuisine} onChange={this.handleCuisineChange}>
+            <select className='select-type' value={this.state.cuisine} onChange={this.handleCuisineChange}>
               <option disabled>Select Cuisine</option>
               <option>Spanish</option>
               <option>French</option>
