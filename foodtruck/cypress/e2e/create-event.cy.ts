@@ -42,10 +42,10 @@ describe('User view tests', () => {
         cy.get('.create-button').contains('Create Event')
     })
 
-    // it('should have button Back to home',() => {
-    //     cy.get('.back-to-owner').click()
-    //     cy.url().should("eq", "http://localhost:3000/owner")
-    // })
+    it('should have button Back to home',() => {
+        cy.get('.back-to-owner').click()
+        cy.url().should("eq", "http://localhost:3000/owner")
+    })
 
     
 })
