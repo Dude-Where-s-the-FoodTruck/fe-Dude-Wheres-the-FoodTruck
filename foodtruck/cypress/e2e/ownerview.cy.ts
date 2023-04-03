@@ -40,25 +40,32 @@ describe('User view tests', () => {
     //     cy.get('.select-type').contains("German")
     // })
 
-    it(' should have a cancel button that clears the input fields',() => {
+    // it(' should have a cancel button that clears the input fields',() => {
+    //     cy.get('.name-input').type('testing')
+    //     .should('have.value', 'testing')
+    //     cy.get('.website-input').type('website')
+    //     .should('have.value', 'website')
+    //     cy.get('.cancel-button').click()
+    //     cy.get('.cancel-button')
+    //     cy.get('.name-input').should('have.value', '')
+    //     cy.get('.website-input').should('have.value', '')
+    // })
+
+// // when updates are pulled check the post
+    it('should have a submit button to patch updates',() => {
         cy.get('.name-input').type('testing')
         .should('have.value', 'testing')
         cy.get('.website-input').type('website')
         .should('have.value', 'website')
-        cy.get('.cancel-button').click()
-        cy.get('.cancel-button')
-        cy.get('.name-input').should('have.value', '')
-        cy.get('.website-input').should('have.value', '')
+        cy.get('.select-type').select('Spanish')
+        cy.get('.submit-button').click()
+
     })
 
-    // it('should have a submit button to patch updates',() => {
-        
-        
-    // })
-
     // it('should display all events for a single truck',() => {
-        
-        
+    //     cy.get('.truck-events-container')
+    //     .contains('Denver')
+    //     .contains('Truck 2')
     // })
 
     // it(' should be able to click an event to go to edit',() => {
