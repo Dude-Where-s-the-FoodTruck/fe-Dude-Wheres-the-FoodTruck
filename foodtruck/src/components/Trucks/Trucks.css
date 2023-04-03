@@ -7,6 +7,14 @@
   width: 90%;
   padding-top: 90px;
   padding-bottom: 40px;
+  overflow: auto;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+	scrollbar-width: none; /* for Firefox */
+	overflow-y: scroll; 
+}
+
+.trucks-container::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 
 @media screen and (max-width: 1330px) {

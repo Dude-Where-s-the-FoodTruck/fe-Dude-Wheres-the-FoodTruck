@@ -12,8 +12,8 @@ export const TruckEvents: React.FC<TruckEventsProps> = ({ ownerTrucks }) => {
     const events = truck.attributes.events || []; // handle case when events is null or undefined
     const eventCardPropsList = events.map((event, index) => {
         return {
-            key: `${truck.id}-${index}`,
-            id: parseInt(truck.id),
+            key: `${event.id}-${index}`,
+            id: event.id,
             name: truck.attributes.name,
             city: event.city || '',
             date: event.event_date || '',
@@ -31,7 +31,7 @@ export const TruckEvents: React.FC<TruckEventsProps> = ({ ownerTrucks }) => {
   return (
     <div className="truck-events-container">
         <div className="truck-event-header">
-            <h1>This is truck events</h1>
+            <h1>Upcoming Events</h1>
         </div>
         <div className="all-events-container">
             {truckEventCards}

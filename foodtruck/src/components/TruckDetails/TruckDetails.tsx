@@ -44,7 +44,7 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
         localStorage.setItem("truck", JSON.stringify(truck));
       })
       .catch(error => {
-        console.log(error);
+        alert(error);
         this.setState({ error, isLoading: false });
       });
   }
@@ -59,7 +59,7 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
       return <div>{error.message}</div>;
     }
     const events = truck?.attributes?.events ?? [];
-    const { foodtruckID, eventId } = this.props.match.params;
+    const { eventId } = this.props.match.params;
     const event = events.find(e => e.id === parseInt(eventId));
     return (
       <div className="TruckDetails">

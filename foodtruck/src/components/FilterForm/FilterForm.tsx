@@ -26,7 +26,6 @@ class FilterForm extends Component<FilterFormProps, FilterFormState> {
   handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const { city } = this.state;
-    console.log(city)
     const { filter } = this.props;
     filter(city);
     this.setState({ city: "" });

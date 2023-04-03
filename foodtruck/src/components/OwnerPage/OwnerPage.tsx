@@ -11,20 +11,20 @@ import { Link, Switch, Route } from "react-router-dom";
 interface OwnerPageProps {
   userType: string | null;
   ownerTrucks: Truck[];
+  fetchTrucks: () => Promise<void>;
 }
 
 export const OwnerPage: React.FC<OwnerPageProps> = ({
   userType,
   ownerTrucks = [],
+  fetchTrucks,
 }) => {
-
 
   // filter owner trucks by selected truck id
   const filteredOwnerTrucks = ownerTrucks.filter(
-    (truck) => truck.id === "1"
+    (truck) => truck.id === "2"
   );
 
-  console.log(filteredOwnerTrucks)
 
   return (
     <>
@@ -44,17 +44,22 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
               </Link>
             </div>
           </header>
+          <div className="change-user-container">
+            <Link to="/" style={{textDecoration: 'none'}}>
+              <button className="change-user">Change User</button>
+            </Link>
+          </div>
           <div className="events-edit-container">
             <Switch>
               <Route exact path="/owner">
                 <TruckEvents ownerTrucks={filteredOwnerTrucks} />
-                <EditTruckForm />
+                <EditTruckForm fetchTrucks={fetchTrucks} filteredOwnerTrucks={filteredOwnerTrucks}/>
               </Route>
               <Route path="/owner/events/:eventId">
-                <UpdateEventForm ownerTrucks={filteredOwnerTrucks} />
+                <UpdateEventForm ownerTrucks={filteredOwnerTrucks} fetchTrucks={fetchTrucks}/>
               </Route>
               <Route path="/owner/create-event">
-                <CreateEventForm ownerTrucks={filteredOwnerTrucks} />
+                <CreateEventForm ownerTrucks={filteredOwnerTrucks} fetchTrucks={fetchTrucks} />
               </Route>
             </Switch>
           </div>
@@ -67,4 +72,3 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
   </>
   );
 };
-

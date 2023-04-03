@@ -1,7 +1,7 @@
 .truck-events-container {
     height: 40em;
     width: 35em;
-    background-color: rgba(243, 156, 18, 0.5);
+    background-color: rgb(243,156,17, .7);
     border-radius: 10%;
   }
 
