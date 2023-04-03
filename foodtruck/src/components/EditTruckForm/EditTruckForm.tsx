@@ -104,6 +104,7 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
             type="text" 
             value={this.state.photo}  
             onChange={this.handlePhotoChange} 
+            placeholder="Photo Link"
           />
           <br />
           <div className='select'>
