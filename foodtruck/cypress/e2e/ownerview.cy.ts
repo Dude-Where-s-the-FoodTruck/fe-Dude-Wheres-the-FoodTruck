@@ -17,10 +17,9 @@ describe('User view tests', () => {
         cy.url().should("eq", "http://localhost:3000/owner/create-event")
     })
 
-    // it(' should be able to edit truck name',() => {
-    //     cy.get('.name-input').type('testing')
-        
-    // })
+    it(' should be able to type in edit truck name(input)',() => {
+        cy.get('.name-input').type('testing')
+    })
 
     // it('should be able to update truck website',() => {
     //     cy.get('.website-input').type('https://i.etsystatic.com/7829877/r/il/78280b/743003426/il_1588xN.743003426_kg62.jpg')
