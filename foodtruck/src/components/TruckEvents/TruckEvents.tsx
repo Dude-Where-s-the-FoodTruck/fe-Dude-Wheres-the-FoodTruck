@@ -31,7 +31,7 @@ export const TruckEvents: React.FC<TruckEventsProps> = ({ ownerTrucks }) => {
   return (
     <div className="truck-events-container">
         <div className="truck-event-header">
-            <h1>This is truck events</h1>
+            <h1>Upcoming Events</h1>
         </div>
         <div className="all-events-container">
             {truckEventCards}

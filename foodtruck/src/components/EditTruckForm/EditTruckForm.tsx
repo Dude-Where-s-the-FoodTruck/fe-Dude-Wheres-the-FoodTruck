@@ -7,7 +7,7 @@ interface EditTruckFormState {
   name: string;
   website: string;
   cuisine: string;
-  photo: File | null;
+  photo: string;
   error: string | null;
 }
 
@@ -18,7 +18,7 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
       name: '',
       website: '',
       cuisine: 'Select Cuisine',
-      photo: null,
+      photo: '',
       error: null
     };
   }
@@ -36,12 +36,11 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
   };
 
   handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files && event.target.files[0];
-    this.setState({ photo: file });
+    this.setState({ photo: event.target.value });
   };
 
   handleCancel = () => {
-    this.setState({ name: '', website: '', cuisine: 'Select Cuisine', photo: null, error: null });
+    this.setState({ name: '', website: '', cuisine: 'Select Cuisine', photo: '', error: null });
   };
 
 
@@ -70,7 +69,7 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
       console.log('Response:', data);
   
       // Clear fields on success
-      this.setState({ name: '', website: '', cuisine: 'Select Cuisine', photo: null });
+      this.setState({ name: '', website: '', cuisine: 'Select Cuisine', photo: '' });
     } catch (error) {
       console.error('Error:', error);
     }
@@ -98,8 +97,13 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
             placeholder='Website Link'
           />
           <br />
-          <input type="file" name="file" id="file" className="inputfile" onChange={this.handlePhotoChange} />
-          <label htmlFor="file">Choose a file</label>
+          <input 
+            className="input-photo"
+            type="text" 
+            value={this.state.photo}  
+            onChange={this.handlePhotoChange} 
+            placeholder='Photo Link'
+          />
           <br />
           <div className='select'>
             <select value={this.state.cuisine} onChange={this.handleCuisineChange}>

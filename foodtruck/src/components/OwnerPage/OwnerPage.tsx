@@ -44,6 +44,11 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
               </Link>
             </div>
           </header>
+          <div className="change-user-container">
+            <Link to="/" style={{textDecoration: "none"}}>
+              <button className="change-user">Change User</button>
+            </Link>
+          </div>
           <div className="events-edit-container">
             <Switch>
               <Route exact path="/owner">
