@@ -34,18 +34,18 @@ describe('User view tests', () => {
         .should('have.value', '80011')
     })
 
-    // // it('should be able to patch event',() => {
+    // it('should be able to patch event',() => {
     
-    // // })
-
-    // it('should have button Create Event',() => {
-    //     cy.get('.create-button').contains('Create Event')
     // })
 
-    // it('should have button Back to home',() => {
-    //     cy.get('.back-to-owner').click()
-    //     cy.url().should("eq", "http://localhost:3000/owner")
-    // })
+    it('should have button Create Event',() => {
+        cy.get('.create-button').contains('Create Event')
+    })
+
+    it('should have button Back to home',() => {
+        cy.get('.back-to-owner').click()
+        cy.url().should("eq", "http://localhost:3000/owner")
+    })
 
     
 })
