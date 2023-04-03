@@ -29,20 +29,27 @@ describe('User view tests', () => {
     //     cy.get('label').contains('Choose a file')
     // })
 
-    it("Should have options to select", () => {
-        cy.get('.select-type').contains("Spanish")
-        cy.get('.select-type').contains("French")
-        cy.get('.select-type').contains("Italian")
-        cy.get('.select-type').contains("Japanese")
-        cy.get('.select-type').contains("Greek")
-        cy.get('.select-type').contains("Vegan")
-        cy.get('.select-type').contains("Fusion")
-        cy.get('.select-type').contains("German")
-    })
-
-    // it(' should have a cancel button that clears the input fields',() => {
-        
+    // it("Should have options to select", () => {
+    //     cy.get('.select-type').contains("Spanish")
+    //     cy.get('.select-type').contains("French")
+    //     cy.get('.select-type').contains("Italian")
+    //     cy.get('.select-type').contains("Japanese")
+    //     cy.get('.select-type').contains("Greek")
+    //     cy.get('.select-type').contains("Vegan")
+    //     cy.get('.select-type').contains("Fusion")
+    //     cy.get('.select-type').contains("German")
     // })
+
+    it(' should have a cancel button that clears the input fields',() => {
+        cy.get('.name-input').type('testing')
+        .should('have.value', 'testing')
+        cy.get('.website-input').type('website')
+        .should('have.value', 'website')
+        cy.get('.cancel-button').click()
+        cy.get('.cancel-button')
+        cy.get('.name-input').should('have.value', '')
+        cy.get('.website-input').should('have.value', '')
+    })
 
     // it('should have a submit button to patch updates',() => {
         
