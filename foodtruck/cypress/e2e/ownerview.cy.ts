@@ -25,9 +25,9 @@ describe('User view tests', () => {
         cy.get('.website-input').type('https://i.etsystatic.com/7829877/r/il/78280b/743003426/il_1588xN.743003426_kg62.jpg')
     })
 
-    // it(' should be able to add img for truck',() => {
-    //     cy.get('label').contains('Choose a file')
-    // })
+    it(' should be able to add img for truck',() => {
+        cy.get('label').contains('Choose a file')
+    })
 
     // it('should be able to select a cuisine from a dropdown menu',() => {
         
