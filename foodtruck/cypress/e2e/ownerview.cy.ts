@@ -12,10 +12,10 @@ describe('User view tests', () => {
         cy.get('.footer').contains("© Dude, Where's The FoodTruck")
     })
 
-    // it('should have a button Add Event',() => {
-    //     cy.get('.add-event-button').contains('Add Event').click()
-    //     cy.url().should("eq", "http://localhost:3000/owner/create-event")
-    // })
+    it('should have a button Add Event',() => {
+        cy.get('.add-event-button').contains('Add Event').click()
+        cy.url().should("eq", "http://localhost:3000/owner/create-event")
+    })
 
     // it(' should be able to edit truck name',() => {
     //     cy.get('.name-input').type('testing')
