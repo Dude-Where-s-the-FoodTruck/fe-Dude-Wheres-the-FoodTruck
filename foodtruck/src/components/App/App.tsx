@@ -78,7 +78,7 @@ class App extends React.Component<{}, AppState> {
         await this.fetchTrucks();
       }
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
   
@@ -90,7 +90,7 @@ class App extends React.Component<{}, AppState> {
         loading: false,
       });
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
 

@@ -44,7 +44,7 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
         localStorage.setItem("truck", JSON.stringify(truck));
       })
       .catch(error => {
-        console.log(error);
+        alert(error);
         this.setState({ error, isLoading: false });
       });
   }

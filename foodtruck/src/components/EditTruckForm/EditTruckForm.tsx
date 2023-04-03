@@ -71,7 +71,6 @@ export class EditTruckForm extends React.Component<EditTruckFormProps, EditTruck
         body: formData,
       });
       const data = await response.json();
-      console.log('Response:', data);
       this.props.fetchTrucks()
       // Clear fields on success
       this.setState({ name: '', website: '', cuisine: 'Select Cuisine', photo: '' });

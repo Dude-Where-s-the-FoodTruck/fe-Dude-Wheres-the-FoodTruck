@@ -50,7 +50,6 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
       ).value,
       city: (document.getElementById("city") as HTMLInputElement).value,
     };
-    console.log(eventData);
   
     const url = `https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/${truck_id}/events`;
   
@@ -63,7 +62,6 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
   
       if (response.ok) {
         const responseData: ResponseData = await response.json();
-        console.log(responseData);
   
         // Reset form inputs
         (document.getElementById("foodtruck") as HTMLSelectElement).selectedIndex = 0;

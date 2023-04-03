@@ -15,7 +15,6 @@ interface MainPageProps {
 }
 
 export const MainPage: React.FC<MainPageProps> = ({ truckData, filter, filteredTrucks, reset, city }) => {
-  // console.log(truckData.data.map((truck) => truck.attributes.name))
   return (
     <>
       <Link to="/" style={{textDecoration: "none"}}>
