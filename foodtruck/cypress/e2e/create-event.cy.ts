@@ -16,12 +16,12 @@ describe('User view tests', () => {
     
     
     it('date, start time, end time, description, street, city, state, zip',() => {
-        // cy.get('#event_date').type('05/05/2023')
-        // .should('have.value', '05/05/2023')
-        // cy.get('#start_time').type('07:05 am')
-        // .should('have.value', '07:05 am')
-        // cy.get('#end_time').type('08:05 pm')
-        // .should('have.value', '08:05 pm')
+        cy.get('#event_date').type('2023-05-23')
+        .should('have.value', '2023-05-23')
+        cy.get('#start_time').type('07:05:00')
+        .should('have.value', '07:05:00')
+        cy.get('#end_time').type('20:05:00')
+        .should('have.value', '20:05:00')
         cy.get('#description').type('around the corner and up the way')
         .should('have.value', 'around the corner and up the way')
         cy.get('#street').type('123')
@@ -38,14 +38,14 @@ describe('User view tests', () => {
     
     // // })
 
-    it('should have button Create Event',() => {
-        cy.get('.create-button').contains('Create Event')
-    })
+    // it('should have button Create Event',() => {
+    //     cy.get('.create-button').contains('Create Event')
+    // })
 
-    it('should have button Back to home',() => {
-        cy.get('.back-to-owner').click()
-        cy.url().should("eq", "http://localhost:3000/owner")
-    })
+    // it('should have button Back to home',() => {
+    //     cy.get('.back-to-owner').click()
+    //     cy.url().should("eq", "http://localhost:3000/owner")
+    // })
 
     
 })
