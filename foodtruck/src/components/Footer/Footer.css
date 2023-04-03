@@ -5,4 +5,5 @@
     flex-direction: row;
     color: black;
     height: 10vh;
+    align-self: flex-end;
 }
