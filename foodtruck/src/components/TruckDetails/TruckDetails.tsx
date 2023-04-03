@@ -50,36 +50,33 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
   }
 
   render() {
-    const MAPBOX_TOKEN = "pk.eyJ1IjoiamF5c21pdGg2MDM1IiwiYSI6ImNsZXEzMDZzODA5NGIzc3BoNTZxeTcyNGUifQ.o85HEkHjse8_WF-O5_d7jg"
+    const MAPBOX_TOKEN = "pk.eyJ1IjoiamF5c21pdGg2MDM1IiwiYSI6ImNsZXEzMDZzODA5NGIzc3BoNTZxeTcyNGUifQ.o85HEkHjse8_WF-O5_d7jg";
     const { truck, isLoading, error } = this.state;
-    // console.log(truck?.attributes.name)
     if (isLoading) {
       return <div>Loading...</div>;
     }
     if (error) {
       return <div>{error.message}</div>;
     }
+    const events = truck?.attributes?.events ?? [];
     const { foodtruckID, eventId } = this.props.match.params;
-    const events = this.props.truckData.data.find(t => t.id === foodtruckID)?.attributes?.events ?? [];
     const event = events.find(e => e.id === parseInt(eventId));
-    const city = event?.city ?? "N/A";
-    const description = event?.description ?? "N/A";
     return (
       <div className="TruckDetails">
         <span className='not-map'>
-            <Link to="/main">
-              <button className="go-to-events">Back to Events</button>
-            </Link>
-            {truck && (
-              <div className='grouped-truck-details'>
-                <img className="truck-image" src={truck.attributes.image_link} alt="Food Truck Logo"/>
-                <h1>{truck.attributes.name}</h1>
-                <p><strong>Food Type:</strong> {truck.attributes.cuisine_type}</p>
-                <p><strong>Where?:</strong> {city}</p>
-                <p><strong>Description of Location:</strong> {description}</p>
-                <a className="weblink-button" href={truck.attributes.web_link} target="_blank" rel="noopener noreferrer">Visit The Website</a>
-              </div>
-            )}
+          <Link to="/main">
+            <button className="go-to-events">Back to Events</button>
+          </Link>
+          {truck && (
+            <div className='grouped-truck-details'>
+              <img className="truck-image" src={truck.attributes.image_link} alt="Food Truck Logo"/>
+              <h1>{truck.attributes.name}</h1>
+              <p><strong>Food Type:</strong> {truck.attributes.cuisine_type}</p>
+              <p><strong>Where?:</strong> {event?.city}</p>
+              <p><strong>Description of Location:</strong> {event?.description}</p>
+              <a className="weblink-button" href={truck.attributes.web_link} target="_blank" rel="noopener noreferrer">Visit The Website</a>
+            </div>
+          )}
         </span>
         <span className='map'>
           <p><strong>We Are Here!</strong></p>
@@ -110,4 +107,4 @@ class TruckDetails extends React.Component<TruckDetailsProps, TruckDetailsState>
   }
 }
 
-export default TruckDetails;
+export default TruckDetails

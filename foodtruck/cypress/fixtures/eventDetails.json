@@ -5,10 +5,10 @@
       "id": "2",
       "type": "food_truck",
       "attributes": {
-          "name": "Bob's Burgers",
+          "name": "The Food Truck We Deserve",
           "cuisine_type": "American",
-          "web_link": "https://bobs-burgers.fandom.com/wiki/Bob%27s_Burgers_Wiki",
-          "image_link": "https://m.media-amazon.com/images/M/MV5BZGJiNmM1NDctNWUxYS00YzE4LWJjNTgtYTJhYzE0NjFmMTMwXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+          "web_link": "https://en.wikipedia.org/wiki/Batman",
+          "image_link": "https://image.api.playstation.com/vulcan/img/rnd/202010/2621/H9v5o8vP6RKkQtR77LIGrGDE.png",
           "events": [
             {
                             "id": 5,
@@ -18,7 +18,7 @@
                             "longitude": -104.9901364,
                             "start_time": "15:00",
                             "end_time": "18:00",
-                            "description": "in parking lot near front entrance",
+                            "description": "This is a description",
                             "created_at": "2023-03-31T23:19:46.799Z",
                             "updated_at": "2023-03-31T23:19:46.799Z",
                             "city": "Denver"
