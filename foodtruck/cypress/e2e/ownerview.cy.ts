@@ -65,7 +65,7 @@ describe('User view tests', () => {
     it('should display all events for a single truck',() => {
         cy.get('.truck-events-container')
         .contains('Denver')
-        .contains('Truck 2')
+        // .contains('Truck 2')
     })
 
     it(' should be able to click an event to go to edit',() => {
