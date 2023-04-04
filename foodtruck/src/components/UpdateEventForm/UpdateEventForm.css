@@ -50,6 +50,10 @@
     width: 100vw;
 }
 
+.back-to-owner {
+    margin-top: 5px;
+}
+
 .back-to-owner,
 .submit-event {
     height: 3.5em;

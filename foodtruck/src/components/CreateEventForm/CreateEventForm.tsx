@@ -72,11 +72,6 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
 
   return (
     <div className="create-form-wrapper-container">
-      <div className="create-back-home">
-        <Link to="/owner">
-          <button className="back-to-owner">Back to Home</button>
-        </Link>
-      </div>
       <div className="create-form-container">
         <div className="create-form-wrapper">
           <form onSubmit={handleSubmit} className="create-form">
