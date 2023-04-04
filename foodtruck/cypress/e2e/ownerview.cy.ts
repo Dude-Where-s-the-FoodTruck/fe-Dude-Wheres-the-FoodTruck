@@ -18,15 +18,15 @@ describe('User view tests', () => {
     })
 
     it(' should be able to type in edit truck name(input)',() => {
-        cy.get('.name-input').type('testing')
+        cy.get('.name-input').type('testing').should('have.value', 'testing')
     })
 
     it('should be able to update truck website',() => {
-        cy.get('.website-input').type('https://i.etsystatic.com/7829877/r/il/78280b/743003426/il_1588xN.743003426_kg62.jpg')
+        cy.get('.website-input').type('https://i.etsystatic.com/7829877/r/il/78280b/743003426/il_1588xN.743003426_kg62.jpg') .should('have.value', 'https://i.etsystatic.com/7829877/r/il/78280b/743003426/il_1588xN.743003426_kg62.jpg')
     })
 
     it(' should be able to add img for truck',() => {
-        cy.get('label').contains('Choose a file')
+        cy.get('.input-photo').type('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.reuters.com%2Flifestyle%2Fare-you-kidding-baby-goat-wows-fans-with-22-inch-ears-2022-07-08%2F&psig=AOvVaw0bIAauroynZOrh7UV4WMe_&ust=1680709313331000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCNDbwaDIkP4CFQAAAAAdAAAAABAD').should('have.value', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.reuters.com%2Flifestyle%2Fare-you-kidding-baby-goat-wows-fans-with-22-inch-ears-2022-07-08%2F&psig=AOvVaw0bIAauroynZOrh7UV4WMe_&ust=1680709313331000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCNDbwaDIkP4CFQAAAAAdAAAAABAD')
     })
 
     it("Should have options to select", () => {
@@ -51,26 +51,28 @@ describe('User view tests', () => {
         cy.get('.website-input').should('have.value', '')
     })
 
-// when updates are pulled check the post
+
     it('should have a submit button to patch updates',() => {
-        cy.get('.name-input').type('testing')
-        .should('have.value', 'testing')
+        cy.get('.name-input').type('testingTruck')
+        .should('have.value', 'testingTruck')
         cy.get('.website-input').type('website')
         .should('have.value', 'website')
+        cy.get('.input-photo').type('Photo')
+        .should('have.value', 'Photo')
         cy.get('.select-type').select('Spanish')
         cy.get('.submit-button').click()
-
+        cy.get('.event-card-container').contains('testingTruck')
+        
     })
 
     it('should display all events for a single truck',() => {
-        cy.get('.truck-events-container')
-        .contains('Denver')
-        // .contains('Truck 2')
+        cy.get('.all-events-container').children().should("have.length", 4)
+       
     })
 
     it(' should be able to click an event to go to edit',() => {
         cy.get('.all-events-container > :nth-child(1)').click()
-        cy.url().should("eq", "http://localhost:3000/owner/events/1")
+        cy.url().should("eq", "http://localhost:3000/owner/events/16")
     })
 
     it('should have a button Add Event',() => {

@@ -28,18 +28,28 @@ describe('User view tests', () => {
         .should('have.value', '123')
         cy.get('#city').type('Aurora')
         .should('have.value', 'Aurora')
-        cy.get('#state').type('CO')
-        .should('have.value', 'CO')
-        cy.get('#zip').type('80011')
-        .should('have.value', '80011')
     })
 
-    // it('should be able to patch event',() => {
-    
-    // })
+    it.only('should be able to patch event',() => {
+        cy.get('#event_date').type('2023-07-13')
+        .should('have.value', '2023-07-13')
+        cy.get('#start_time').type('08:05:00')
+        .should('have.value', '08:05:00')
+        cy.get('#end_time').type('21:05:00')
+        .should('have.value', '21:05:00')
+        cy.get('#description').type('up the way')
+        .should('have.value', 'up the way')
+        cy.get('#street').type('490 w colfax')
+        .should('have.value', '490 w colfax')
+        cy.get('#city').type('Denver')
+        .should('have.value', 'Denver')
+        cy.get(':nth-child(8) > button').click()
+
+
+    })
 
     it('should have button Create Event',() => {
-        cy.get('.create-button').contains('Create Event')
+        cy.get('.add-event-button').contains('Add Event')
     })
 
     it('should have button Back to home',() => {

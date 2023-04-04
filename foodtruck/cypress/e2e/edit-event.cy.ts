@@ -25,14 +25,10 @@ describe('User view tests', () => {
         .should('have.value', '20:05:00')
         cy.get('#description').type('around the corner and up the way')
         .should('have.value', 'around the corner and up the way')
-        cy.get('#street').type('123')
-        .should('have.value', '123')
-        cy.get('#city').type('Aurora')
-        .should('have.value', 'Aurora')
-        cy.get('#state').type('CO')
-        .should('have.value', 'CO')
-        cy.get('#zip').type('80011')
-        .should('have.value', '80011')
+        cy.get('#street').type('490 w colfax')
+        .should('have.value', '490 w colfax')
+        cy.get('#city').type('Denver')
+        .should('have.value', 'Denver')
     })
 
     it('should have button UpdateEvent',() => {
@@ -44,7 +40,25 @@ describe('User view tests', () => {
         cy.url().should("eq", "http://localhost:3000/owner")
     })
 
-    // it('should be able to patch event',() => {
-    
-    // })
+    it('should be able to patch event',() => {
+        cy.get('#event_date').type('2023-05-13')
+        .should('have.value', '2023-05-13')
+        cy.get('#start_time').type('07:05:00')
+        .should('have.value', '07:05:00')
+        cy.get('#end_time').type('20:05:00')
+        .should('have.value', '20:05:00')
+        cy.get('#description').type('around the corner')
+        .should('have.value', 'around the corner')
+        cy.get('#street').type('490 w colfax')
+        .should('have.value', '490 w colfax')
+        cy.get('#city').type('Denver')
+        .should('have.value', 'Denver')
+        cy.get('.submit-event').click()
+
+        cy.get('.event-details > div > :nth-child(2)').contains('Denver')
+        cy.get('.event-details > div > :nth-child(3)').contains('around the corner')
+        cy.get('.event-details > div > :nth-child(4)').contains('2023-05-13')
+        cy.get('.event-details > div > :nth-child(5)').contains('07:05:00')
+        cy.get('.event-details > div > :nth-child(6)').contains('20:05:00')
+    })
 })
