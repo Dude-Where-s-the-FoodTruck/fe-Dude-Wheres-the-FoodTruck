@@ -52,7 +52,7 @@ describe('User view tests', () => {
     })
 
 
-    it.only('should have a submit button to patch updates',() => {
+    it('should have a submit button to patch updates',() => {
         cy.get('.name-input').type('testingTruck')
         .should('have.value', 'testingTruck')
         cy.get('.website-input').type('website')
@@ -62,9 +62,10 @@ describe('User view tests', () => {
         cy.get('.select-type').select('Spanish')
         cy.get('.submit-button').click()
         cy.get('.event-card-container').contains('testingTruck')
+        
     })
 
-    it.only('should display all events for a single truck',() => {
+    it('should display all events for a single truck',() => {
         cy.get('.all-events-container').children().should("have.length", 1)
        
     })
