@@ -82,12 +82,7 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
   };
 
   return (
-    <div className="update-form-wrapper-container">
-      <div className="update-back-home">
-        <Link to="/owner">
-          <button className="back-to-owner">Back to Home</button>
-        </Link>
-      </div>
+    <>
       <div className="event-details">
         {event && (
           <div className="current-event-details">
@@ -100,7 +95,6 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
           </div>
         )}
       </div>
-      <div className="update-form-container">
         <div className="update-form-wrapper">
           <form onSubmit={handleSubmit} className="update-form">
             <div className="form-group">
@@ -138,7 +132,6 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
             </button>
           </form>
         </div>
-      </div>
-    </div>
+    </>
   );
 };

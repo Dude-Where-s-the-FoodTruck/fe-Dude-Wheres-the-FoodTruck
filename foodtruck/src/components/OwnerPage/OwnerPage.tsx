@@ -42,12 +42,18 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
                 Add Event
               </Link>
             </div>
+            <div className="update-back-home">
+              <Link to="/owner">
+                <button className="back-to-owner">Back to Home</button>
+              </Link>
+            </div>
+            <div className="change-user-container">
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <button className="change-user">Change User</button>
+              </Link>
+            </div>
           </header>
-          <div className="change-user-container">
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <button className="change-user">Change User</button>
-            </Link>
-          </div>
+
           <div className="events-edit-container">
             <Switch>
               <Route exact path="/owner">
@@ -72,8 +78,8 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
             </Switch>
           </div>
           <footer className="owner-footer">
-            <h3 className="footer-name">© Dude, Where's The FoodTruck</h3>
-            <p className="footer-city">Denver, CO</p>
+            <h3 className="owner-footer-name">© Dude, Where's The FoodTruck</h3>
+            <p className="owner-footer-city">Denver, CO</p>
           </footer>
         </div>
       )}

@@ -12,7 +12,7 @@ describe('User view tests', () => {
 
     it('should have a header and footer',() => {
         cy.get('.header').contains('Add Event')
-        cy.get('.footer').contains("© Dude, Where's The FoodTruck")
+        cy.get('.owner-footer').contains("© Dude, Where's The FoodTruck")
     })
     
     
