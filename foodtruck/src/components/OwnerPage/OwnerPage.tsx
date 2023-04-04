@@ -71,7 +71,7 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
               </Route>
             </Switch>
           </div>
-          <footer className="footer">
+          <footer className="owner-footer">
             <h3 className="footer-name">© Dude, Where's The FoodTruck</h3>
             <p className="footer-city">Denver, CO</p>
           </footer>

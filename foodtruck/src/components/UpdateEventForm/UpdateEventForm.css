@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(243, 156, 18, 0.5);
+    background-color: rgba(243, 156, 18, 0.7);
     border-radius: 10%;
     justify-content: center;
 }
@@ -43,8 +43,11 @@
 }
 
 .update-back-home {
-    width: 90%;
     height: 15%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100vw;
 }
 
 .back-to-owner,
@@ -66,3 +69,15 @@
     transition: border-radius 0.3s ease-in-out;
 }
 
+.current-event-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 21em;
+    width: 18em;
+    background-color: rgb(243,156,17, .7);
+    border-radius: 10%;
+    justify-content: space-around;
+    margin-bottom: 10px
+}
