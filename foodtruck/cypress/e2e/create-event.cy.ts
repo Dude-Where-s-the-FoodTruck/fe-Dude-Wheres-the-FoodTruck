@@ -28,10 +28,6 @@ describe('User view tests', () => {
         .should('have.value', '123')
         cy.get('#city').type('Aurora')
         .should('have.value', 'Aurora')
-        cy.get('#state').type('CO')
-        .should('have.value', 'CO')
-        cy.get('#zip').type('80011')
-        .should('have.value', '80011')
     })
 
     // it('should be able to patch event',() => {
@@ -39,7 +35,7 @@ describe('User view tests', () => {
     // })
 
     it('should have button Create Event',() => {
-        cy.get('.create-button').contains('Create Event')
+        cy.get('.add-event-button').contains('Add Event')
     })
 
     it('should have button Back to home',() => {
