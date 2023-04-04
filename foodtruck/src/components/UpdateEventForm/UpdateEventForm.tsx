@@ -90,7 +90,7 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
       </div>
       <div className="event-details">
         {event && (
-          <div>
+          <div className="current-event-details">
             <h3>Current Event Details</h3>
             <p>City: {event.city}</p>
             <p>Description: {event.description}</p>
