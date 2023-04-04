@@ -104,11 +104,12 @@
     .events-edit-container {
       display: flex;
       justify-content: space-between;
-      height: 100vh;
+      height: 110vh;
       padding-left: 14em;
       padding-right: 14em;
       align-items: center;
       margin-top: 6em;
       flex-direction: column;
     }
+    
   }
