@@ -10,15 +10,10 @@ interface UpdateEventFormProps {
 
 interface EventData {
   event_date: string;
+  location: string;
   start_time: string;
   end_time: string;
   description: string;
-  location: {
-    street: string;
-    city: string;
-    state: string;
-    zip: string;
-  };
   city: string;
 }
 
@@ -41,6 +36,8 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks, f
     const eventData: EventData = {
       event_date: (document.getElementById("event_date") as HTMLInputElement)
         .value,
+        location: (document.getElementById("street") as HTMLInputElement)
+        .value,
       start_time: (document.getElementById("start_time") as HTMLInputElement)
         .value,
       end_time: (document.getElementById("end_time") as HTMLInputElement)
@@ -48,12 +45,6 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks, f
       description: (
         document.getElementById("description") as HTMLInputElement
       ).value,
-      location: {
-        street: (document.getElementById("street") as HTMLInputElement).value,
-        city: (document.getElementById("city") as HTMLInputElement).value,
-        state: (document.getElementById("state") as HTMLInputElement).value,
-        zip: (document.getElementById("zip") as HTMLInputElement).value,
-      },
       city: (document.getElementById("city") as HTMLInputElement).value,
     };
     console.log(eventData)
@@ -75,39 +66,39 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks, f
         (document.getElementById("description") as HTMLInputElement).value = "";
         (document.getElementById("street") as HTMLInputElement).value = "";
         (document.getElementById("city") as HTMLInputElement).value = "";
-        (document.getElementById("state") as HTMLInputElement).value = "";
-        (document.getElementById("zip") as HTMLInputElement).value = "";
+        // (document.getElementById("state") as HTMLInputElement).value = "";
+        // (document.getElementById("zip") as HTMLInputElement).value = "";
         history.push("/owner");
         fetchTrucks()
 
       } else {
-        console.error(response.statusText);
+        console.log(response.statusText);
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
 
   return (
     <div className="update-form-wrapper-container">
-      <div className="event-details">
-        
-        {event && (
-          <div>
-            <h3>Current Event Details</h3>
-            <p>City: {event.city}</p>
-            <p>Description: {event.description}</p>
-            <p>Event Date: {event.event_date}</p>
-            <p>Start Time: {event.start_time}</p>
-            <p>End Time: {event.end_time}</p>
-          </div>
-        )}
-      </div>
       <div className="update-back-home">
         <Link to="/owner">
           <button className="back-to-owner">Back to Home</button>
         </Link>
+      </div>
+      <div className="event-details">
+        
+        {event && (
+          <div className="current-event-details">
+            <h3>Current Event Details</h3>
+            <p><strong>City:</strong> {event.city}</p>
+            <p><strong>Description:</strong> {event.description}</p>
+            <p><strong>Event Date:</strong> {event.event_date}</p>
+            <p><strong>Start Time:</strong> {event.start_time}</p>
+            <p><strong>End Time:</strong> {event.end_time}</p>
+          </div>
+        )}
       </div>
       <div className="update-form-container">
         <div className="update-form-wrapper">
@@ -143,14 +134,14 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks, f
               <label htmlFor="city">City:</label>
               <input type="text" id="city" name="city" required />
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="state">State:</label>
               <input type="text" id="state" name="state" required />
-            </div>
-            <div className="form-group">
+            </div> */}
+            {/* <div className="form-group">
               <label htmlFor="zip">Zip:</label>
               <input type="text" id="zip" name="zip" required />
-            </div>
+            </div> */}
             <button className="submit-event" type="submit">
               Update Event
             </button>
