@@ -19,12 +19,7 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
   ownerTrucks = [],
   fetchTrucks,
 }) => {
-
-  // filter owner trucks by selected truck id
-  const filteredOwnerTrucks = ownerTrucks.filter(
-    (truck) => truck.id === "2"
-  );
-
+  const filteredOwnerTrucks = ownerTrucks.filter((truck) => truck.id === "2");
 
   return (
     <>
@@ -39,13 +34,17 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
               />
             </Link>
             <div className="add-event-link">
-              <Link to="/owner/create-event" className="add-event-button" style={{textDecoration: "none"}}>
+              <Link
+                to="/owner/create-event"
+                className="add-event-button"
+                style={{ textDecoration: "none" }}
+              >
                 Add Event
               </Link>
             </div>
           </header>
           <div className="change-user-container">
-            <Link to="/" style={{textDecoration: 'none'}}>
+            <Link to="/" style={{ textDecoration: "none" }}>
               <button className="change-user">Change User</button>
             </Link>
           </div>
@@ -53,22 +52,31 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
             <Switch>
               <Route exact path="/owner">
                 <TruckEvents ownerTrucks={filteredOwnerTrucks} />
-                <EditTruckForm fetchTrucks={fetchTrucks} filteredOwnerTrucks={filteredOwnerTrucks}/>
+                <EditTruckForm
+                  fetchTrucks={fetchTrucks}
+                  filteredOwnerTrucks={filteredOwnerTrucks}
+                />
               </Route>
               <Route path="/owner/events/:eventId">
-                <UpdateEventForm ownerTrucks={filteredOwnerTrucks} fetchTrucks={fetchTrucks}/>
+                <UpdateEventForm
+                  ownerTrucks={filteredOwnerTrucks}
+                  fetchTrucks={fetchTrucks}
+                />
               </Route>
               <Route path="/owner/create-event">
-                <CreateEventForm ownerTrucks={filteredOwnerTrucks} fetchTrucks={fetchTrucks} />
+                <CreateEventForm
+                  ownerTrucks={filteredOwnerTrucks}
+                  fetchTrucks={fetchTrucks}
+                />
               </Route>
             </Switch>
           </div>
-          <footer className="footer">
+          <footer className="owner-footer">
             <h3 className="footer-name">© Dude, Where's The FoodTruck</h3>
             <p className="footer-city">Denver, CO</p>
           </footer>
         </div>
       )}
-  </>
+    </>
   );
 };

@@ -16,10 +16,14 @@ export const TruckEventCard: React.FC<TruckEventCardProps> = ({
 }) => {
   const cityName = city || "Not Specified";
   return (
-    <Link className="event-card-container" to={`/owner/events/${id}`} style={{textDecoration: "none"}}>
-          <p>{name}</p>
-          <p>{cityName}</p>
-          <p>{date}</p>
+    <Link
+      className="event-card-container"
+      to={`/owner/events/${id}`}
+      style={{ textDecoration: "none" }}
+    >
+      <p>{name}</p>
+      <p>{cityName}</p>
+      <p>{date}</p>
     </Link>
   );
 };
