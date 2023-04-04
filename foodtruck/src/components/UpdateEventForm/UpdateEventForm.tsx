@@ -83,6 +83,11 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
 
   return (
     <div className="update-form-wrapper-container">
+      <div className="update-back-home">
+        <Link to="/owner">
+          <button className="back-to-owner">Back to Home</button>
+        </Link>
+      </div>
       <div className="event-details">
         {event && (
           <div>
@@ -94,11 +99,6 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
             <p>End Time: {event.end_time}</p>
           </div>
         )}
-      </div>
-      <div className="update-back-home">
-        <Link to="/owner">
-          <button className="back-to-owner">Back to Home</button>
-        </Link>
       </div>
       <div className="update-form-container">
         <div className="update-form-wrapper">
