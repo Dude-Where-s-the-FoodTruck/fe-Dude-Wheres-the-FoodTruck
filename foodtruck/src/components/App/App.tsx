@@ -59,12 +59,12 @@ class App extends React.Component<{}, AppState> {
       filteredTrucks: [],
       userType: null,
       loading: true,
-      city: '',
+      city: "",
     };
   }
   async componentDidMount() {
     try {
-      const storedState = localStorage.getItem('appState');
+      const storedState = localStorage.getItem("appState");
       if (storedState) {
         this.setState(JSON.parse(storedState), async () => {
           await this.fetchTrucks();
@@ -73,7 +73,7 @@ class App extends React.Component<{}, AppState> {
         await this.fetchTrucks();
       }
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
   fetchTrucks = async () => {
@@ -84,21 +84,22 @@ class App extends React.Component<{}, AppState> {
         loading: false,
       });
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
-  }
+  };
   componentDidUpdate() {
-    localStorage.setItem('appState', JSON.stringify(this.state));
+    localStorage.setItem("appState", JSON.stringify(this.state));
   }
   getFilteredTrucks = (city: string): void => {
     const { trucks } = this.state;
+    console.log(city)
     const filtered = trucks.data.filter((truck) =>
       truck.attributes.events.some((event) => event.city === city)
     );
     this.setState({ filteredTrucks: filtered, city: city });
   };
   resetFilteredTrucks = (): void => {
-    this.setState({ filteredTrucks: [], city: '' });
+    this.setState({ filteredTrucks: [], city: "" });
   };
   setUserType = (type: UserType): void => {
     this.setState({
@@ -121,45 +122,43 @@ class App extends React.Component<{}, AppState> {
           </Route>
           {userType === "user" && (
             <>
-            <Header />
-            <Switch>
-              <Route exact path="/main">
-                <MainPage
-                  truckData={trucks}
-                  filter={this.getFilteredTrucks}
-                  filteredTrucks={filteredTrucks}
-                  reset={this.resetFilteredTrucks}
-                  city={city}
+              <Header />
+              <Switch>
+                <Route exact path="/main">
+                  <MainPage
+                    truckData={trucks}
+                    filter={this.getFilteredTrucks}
+                    filteredTrucks={filteredTrucks}
+                    reset={this.resetFilteredTrucks}
+                    city={city}
+                  />
+                </Route>
+                <Route
+                  path="/foodtruck/:foodtruckID/:eventId"
+                  render={(props) => (
+                    <TruckDetails {...props} truckData={trucks} />
+                  )}
                 />
-              </Route>
-              <Route
-                path="/foodtruck/:foodtruckID/:eventId"
-                render={(props) => (
-                  <TruckDetails {...props} truckData={trucks} />
-                )}
-              />
-            </Switch>
-            <Footer />
+              </Switch>
+              <Footer />
             </>
           )}
-          {this.state.userType === 'owner' && (
+          {this.state.userType === "owner" && (
             <Switch>
               <Route path="/owner">
-                <OwnerPage userType={userType} ownerTrucks={trucks.data} fetchTrucks={this.fetchTrucks}/>
+                <OwnerPage
+                  userType={userType}
+                  ownerTrucks={trucks.data}
+                  fetchTrucks={this.fetchTrucks}
+                />
               </Route>
-              {this.state.userType === "owner" && <Redirect to='/owner' />}
+              {this.state.userType === "owner" && <Redirect to="/owner" />}
             </Switch>
           )}
-          {this.state.userType === null && <Redirect to='/' />}
-          </Switch>
-        </div>
+          {this.state.userType === null && <Redirect to="/" />}
+        </Switch>
+      </div>
     );
   }
 }
-export default App
-
-
-
-
-
-
+export default App;
