@@ -116,7 +116,7 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
               <input type="text" id="city" name="city" required />
             </div>
             <div className="form-group">
-              <button type="submit">Create Event</button>
+              <button className="submit-button" type="submit">Create Event</button>
             </div>
           </form>
         </div>
