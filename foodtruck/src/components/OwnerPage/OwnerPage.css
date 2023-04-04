@@ -54,6 +54,7 @@
     align-items: center;
     justify-content: center;
     border: 2px solid #34495e ;
+    color: black;
 }
 
 .add-event-button:hover {
@@ -80,3 +81,26 @@
     border-radius: 10%;
     justify-content: space-around
 }
+
+.owner-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    color: black;
+    height: 10vh;
+    padding-top: 10vh;
+}
+
+  @media screen and (max-width: 510px) {
+    .events-edit-container {
+      display: flex;
+      justify-content: space-between;
+      height: 100vh;
+      padding-left: 14em;
+      padding-right: 14em;
+      align-items: center;
+      margin-top: 6em;
+      flex-direction: column;
+    }
+  }

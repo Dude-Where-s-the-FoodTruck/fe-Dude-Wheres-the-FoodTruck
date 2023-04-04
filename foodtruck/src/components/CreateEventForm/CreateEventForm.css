@@ -50,6 +50,7 @@ input[type="time" i] {
 }
 
 .create-back-home {
+    display: flex;
     width: 90%;
     height: 15%;
 }

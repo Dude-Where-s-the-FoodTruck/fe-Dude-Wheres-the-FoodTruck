@@ -8,82 +8,82 @@ interface UpdateEventFormProps {
   fetchTrucks: () => Promise<void>;
 }
 
-interface EventData {
-  event_date: string;
-  location: string;
-  start_time: string;
-  end_time: string;
-  description: string;
-  city: string;
-}
-
-interface ResponseData {
-  data: {
-    id: number;
-    attributes: EventData;
-    relationships: { foodtruck_id: number };
-  };
-}
-
-export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks, fetchTrucks, }) => {
-  console.log(ownerTrucks)
+export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
+  ownerTrucks,
+  fetchTrucks,
+}) => {
   const history = useHistory();
   const { eventId } = useParams<{ eventId: string }>();
-  const event = ownerTrucks[0].attributes.events.find((e) => e.id === Number(eventId));
+  const event = ownerTrucks[0].attributes.events.find(
+    (e) => e.id === Number(eventId)
+  );
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const eventData: EventData = {
-      event_date: (document.getElementById("event_date") as HTMLInputElement)
-        .value,
-        location: (document.getElementById("street") as HTMLInputElement)
-        .value,
-      start_time: (document.getElementById("start_time") as HTMLInputElement)
-        .value,
-      end_time: (document.getElementById("end_time") as HTMLInputElement)
-        .value,
-      description: (
-        document.getElementById("description") as HTMLInputElement
-      ).value,
-      city: (document.getElementById("city") as HTMLInputElement).value,
-    };
-    console.log(eventData)
+    
+    const eventDateInput = document.getElementById("event_date") as HTMLInputElement;
+    const locationInput = document.getElementById("street") as HTMLInputElement;
+    const startTimeInput = document.getElementById("start_time") as HTMLInputElement;
+    const endTimeInput = document.getElementById("end_time") as HTMLInputElement;
+    const descriptionInput = document.getElementById("description") as HTMLInputElement;
+    const cityInput = document.getElementById("city") as HTMLInputElement;
+  
+    const formData = new FormData();
+  
+    if (eventDateInput.value) {
+      formData.append("event_date", eventDateInput.value)
+    }
+  
+    if (locationInput.value) {
+      formData.append("location", locationInput.value)
+    }
+  
+    if (startTimeInput.value) {
+      formData.append("start_time", startTimeInput.value)
+    }
+  
+    if (endTimeInput.value) {
+      formData.append("end_time", endTimeInput.value)
+    }
+  
+    if (descriptionInput.value) {
+      formData.append("description", descriptionInput.value)
+    }
+  
+    if (cityInput.value) {
+      formData.append("city", cityInput.value)
+    }
+  
     const url = `https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/${ownerTrucks[0].id}/events/${eventId}`;
-    console.log(eventData)
+  
     try {
       const response = await fetch(url, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(eventData),
+        body: formData,
       });
 
+      await response.json();
       if (response.ok) {
-        const responseData: ResponseData = await response.json();
-        console.log(responseData);
-        (document.getElementById("event_date") as HTMLInputElement).value = "";
-        (document.getElementById("start_time") as HTMLInputElement).value = "";
-        (document.getElementById("end_time") as HTMLInputElement).value = "";
-        (document.getElementById("description") as HTMLInputElement).value = "";
-        (document.getElementById("street") as HTMLInputElement).value = "";
-        (document.getElementById("city") as HTMLInputElement).value = "";
-        // (document.getElementById("state") as HTMLInputElement).value = "";
-        // (document.getElementById("zip") as HTMLInputElement).value = "";
+        eventDateInput.value = "";
+        startTimeInput.value = "";
+        endTimeInput.value = "";
+        descriptionInput.value = "";
+        locationInput.value = "";
+        cityInput.value = "";
+  
         history.push("/owner");
-        fetchTrucks()
-
+        fetchTrucks();
       } else {
-        console.log(response.statusText);
+        alert(response.statusText);
       }
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
-
 
   return (
     <div className="update-form-wrapper-container">
       <div className="event-details">
-        
         {event && (
           <div>
             <h3>Current Event Details</h3>
@@ -105,15 +105,15 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks, f
           <form onSubmit={handleSubmit} className="update-form">
             <div className="form-group">
               <label htmlFor="event_date">Event Date:</label>
-              <input type="date" id="event_date" name="event_date" required />
+              <input type="date" id="event_date" name="event_date" />
             </div>
             <div className="form-group">
               <label htmlFor="start_time">Start Time:</label>
-              <input type="time" id="start_time" name="start_time" required />
+              <input type="time" id="start_time" name="start_time" />
             </div>
             <div className="form-group">
               <label htmlFor="end_time">End Time:</label>
-              <input type="time" id="end_time" name="end_time" required />
+              <input type="time" id="end_time" name="end_time" />
             </div>
             <div className="form-group">
               <label htmlFor="description">Location Description:</label>
@@ -123,25 +123,16 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({ ownerTrucks, f
                 name="description"
                 style={{ resize: "none" }}
                 maxLength={200}
-                required
               />
             </div>
             <div className="form-group">
               <label htmlFor="street">Street Address:</label>
-              <input type="text" id="street" name="street" required />
+              <input type="text" id="street" name="street" />
             </div>
             <div className="form-group">
               <label htmlFor="city">City:</label>
-              <input type="text" id="city" name="city" required />
+              <input type="text" id="city" name="city" />
             </div>
-            {/* <div className="form-group">
-              <label htmlFor="state">State:</label>
-              <input type="text" id="state" name="state" required />
-            </div> */}
-            {/* <div className="form-group">
-              <label htmlFor="zip">Zip:</label>
-              <input type="text" id="zip" name="zip" required />
-            </div> */}
             <button className="submit-event" type="submit">
               Update Event
             </button>
