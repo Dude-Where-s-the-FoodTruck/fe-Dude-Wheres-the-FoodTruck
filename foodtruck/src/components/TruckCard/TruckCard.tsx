@@ -7,7 +7,7 @@ export interface TruckCardProps {
   truckName: string;
   truckImageLink: string;
   city: string;
-  date: string
+  date: string;
 }
 
 export const TruckCard: React.FC<TruckCardProps> = ({
@@ -18,14 +18,17 @@ export const TruckCard: React.FC<TruckCardProps> = ({
   city,
   date,
 }) => {
+
   return (
-    <Link to={`/foodtruck/${foodTruckId}/${eventId}`} style={{ textDecoration: "none", width: "300px", height: "400px" }}>
+    <Link
+      to={`/foodtruck/${foodTruckId}/${eventId}`}
+      style={{ textDecoration: "none", width: "300px", height: "400px" }}
+    >
       <div className="card-info">
-      <div
+        <div
           className="card-container"
           style={{ backgroundImage: `url(${truckImageLink})` }}
-        >
-        </div>
+        ></div>
         <div className="card-display">
           <h3 className="truck-name">{truckName}</h3>
           <p>{city}</p>
