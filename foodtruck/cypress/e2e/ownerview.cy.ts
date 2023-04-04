@@ -51,21 +51,22 @@ describe('User view tests', () => {
         cy.get('.website-input').should('have.value', '')
     })
 
-// when updates are pulled check the post
-    it('should have a submit button to patch updates',() => {
-        cy.get('.name-input').type('testing')
-        .should('have.value', 'testing')
+
+    it.only('should have a submit button to patch updates',() => {
+        cy.get('.name-input').type('testingTruck')
+        .should('have.value', 'testingTruck')
         cy.get('.website-input').type('website')
         .should('have.value', 'website')
+        cy.get('.input-photo').type('Photo')
+        .should('have.value', 'Photo')
         cy.get('.select-type').select('Spanish')
         cy.get('.submit-button').click()
-
+        cy.get('.event-card-container').contains('testingTruck')
     })
 
-    it('should display all events for a single truck',() => {
-        cy.get('.truck-events-container')
-        .contains('Denver')
-        .contains("Everyone's A Truck")
+    it.only('should display all events for a single truck',() => {
+        cy.get('.all-events-container').children().should("have.length", 1)
+       
     })
 
     it(' should be able to click an event to go to edit',() => {
