@@ -66,7 +66,7 @@ describe('User view tests', () => {
     })
 
     it('should display all events for a single truck',() => {
-        cy.get('.all-events-container').children().should("have.length", 1)
+        cy.get('.all-events-container').children().should("have.length", 4)
        
     })
 

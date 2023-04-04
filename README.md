@@ -23,7 +23,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck">
-  <h3 align="center">Dude Where's the Food Truck</h3>
+  <h3 align="center">Dude Where's the Food Truck?</h3>
   </a>
   
 
@@ -55,7 +55,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Dude, Where's the Food Truck is a web app where users can look up the available food trucks in a given area. Once choosing a food truck, a user can view where the food truck will be on a given date through a list of events displayed. Once registered, the owner of a food truck can add and edit events and their trucks's info. All 'events' visibile are created by food truck owners. 
+Dude, Where's the Food Truck? is a web app where users can look up the available food trucks in a given area.
+As a user,  when choosing a food truck, you can view where the food trucks will be on a given date, through a list of displayed events. 
+As the owner of a food truck, you can add and edit events and your trucks's info. All 'events' visible are created by food truck owners.
+
 
 This repo is the front end for such a website. It utilizes typescript, mapbox GL along with a custom API created by the back end engineers.
 
@@ -65,7 +68,7 @@ This repo is the front end for such a website. It utilizes typescript, mapbox GL
 - Engage in an agile project development cycle.
 - Collaborate between dedicated front end and back end teams.
 - Create a user friendly web app that uses a RESTapi.
-- Learn to how to utilize typescript.
+- Learn how to utilize typescript.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
