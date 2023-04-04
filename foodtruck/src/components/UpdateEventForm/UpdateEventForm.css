@@ -43,9 +43,9 @@
 }
 
 .update-back-home {
-    height: 15%;
+    height: 10vh;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     width: 100vw;
 }
@@ -70,14 +70,13 @@
 }
 
 .current-event-details {
+    height: 40em;
+    width: 35em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 21em;
-    width: 18em;
-    background-color: rgb(243,156,17, .7);
+    background-color: rgba(243, 156, 18, 0.7);
     border-radius: 10%;
-    justify-content: space-around;
-    margin-bottom: 10px
+    justify-content: center;
+
 }
