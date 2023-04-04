@@ -16,12 +16,6 @@ interface EventData {
   city: string;
 }
 
-interface ResponseData {
-  data: {
-    attributes: EventData;
-    relationships: { foodtruck_id: number };
-  };
-}
 
 export const CreateEventForm: React.FC<CreateEventFormProps> = ({
   ownerTrucks,
@@ -31,55 +25,48 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const truck_id = (document.getElementById(
-      "foodtruck"
-    ) as HTMLSelectElement).value;
-  
+    const truck_id = (document.getElementById("foodtruck") as HTMLSelectElement)
+      .value;
+
     const eventData: EventData = {
       event_date: (document.getElementById("event_date") as HTMLInputElement)
         .value,
       start_time: (document.getElementById("start_time") as HTMLInputElement)
         .value,
-      end_time: (document.getElementById("end_time") as HTMLInputElement)
+      end_time: (document.getElementById("end_time") as HTMLInputElement).value,
+      description: (document.getElementById("description") as HTMLInputElement)
         .value,
-      description: (
-        document.getElementById("description") as HTMLInputElement
-      ).value,
-      location: (
-        document.getElementById("street") as HTMLInputElement
-      ).value,
+      location: (document.getElementById("street") as HTMLInputElement).value,
       city: (document.getElementById("city") as HTMLInputElement).value,
     };
-  
+
     const url = `https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/${truck_id}/events`;
-  
+
     try {
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(eventData),
       });
-  
+
       if (response.ok) {
-        const responseData: ResponseData = await response.json();
-  
-        // Reset form inputs
-        (document.getElementById("foodtruck") as HTMLSelectElement).selectedIndex = 0;
+        (document.getElementById("foodtruck") as HTMLSelectElement
+        ).selectedIndex = 0;
         (document.getElementById("event_date") as HTMLInputElement).value = "";
         (document.getElementById("start_time") as HTMLInputElement).value = "";
         (document.getElementById("end_time") as HTMLInputElement).value = "";
         (document.getElementById("description") as HTMLInputElement).value = "";
         (document.getElementById("street") as HTMLInputElement).value = "";
         (document.getElementById("city") as HTMLInputElement).value = "";
-  
+        await response.json();
         fetchTrucks();
-    
+
         history.push("/owner");
       } else {
-        console.error(response.statusText);
+        alert(response.statusText);
       }
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 
