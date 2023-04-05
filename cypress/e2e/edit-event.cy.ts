@@ -70,4 +70,5 @@ describe('User view tests', () => {
         cy.get('.back-to-owner').click()
         cy.url().should("eq", "http://localhost:3000/owner")
     })
+
 })
