@@ -49,38 +49,19 @@ p {
 
 
 .go-to-events {
-  --b: 3px;   
-  --s: .45em; 
-  --color: black;
-  
-  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
-  color: var(--color);
-  --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .6em;
-  font-size: 16px;
-  cursor: pointer;
-  border: 0;
-
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+     height: 3.5em;
+    background-color: lightgray;
+    cursor: pointer;
+    transition: border-radius 0.3s ease-in-out;
+    font-weight: 800;
 }
 
-.go-to-events:hover,
-.go-to-events:focus-visible{
-  --_p: 0px;
-  outline-color: var(--color);
-  outline-offset: .05em;
-}
-
-.go-to-events:active {
-  background: var(--color);
-  color: #fff;
+.go-to-events:hover {
+ background-color: #34495e;
+    border: 2px #f39c12 solid;
+    color: #f39c12;
+    border-radius: 50%;
+    transition: border-radius 0.3s ease-in-out;
 }
 
 
