@@ -69,67 +69,73 @@ class TruckDetails extends React.Component<
     const { eventId } = this.props.match.params;
     const event = events.find((e) => e.id === parseInt(eventId));
     return (
-      <div className="TruckDetails">
-        <span className="not-map">
-          <Link to="/main">
-            <button className="go-to-events">Back to Events</button>
-          </Link>
-          {truck && (
-            <div className="grouped-truck-details">
-              <img
-                className="truck-image"
-                src={truck.attributes.image_link}
-                alt="Food Truck Logo"
-              />
-              <h1>{truck.attributes.name}</h1>
-              <p>
-                <strong>Food Type:</strong> {truck.attributes.cuisine_type}
-              </p>
-              <p>
-                <strong>Where?:</strong> {event?.city}
-              </p>
-              <p>
-                <strong>Description of Location:</strong> {event?.description}
-              </p>
-              <a
-                className="weblink-button"
-                href={truck.attributes.web_link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit The Website
-              </a>
+      <div className="all-details-wrapper">
+        <div>
+          <Link to="/main" style={{textDecoration: "none"}}>
+            <div className="go-to-events-wrapper">
+              <button className="go-to-events">Back to Events</button>
             </div>
-          )}
-        </span>
-        <span className="map">
-          <p>
-            <strong>We Are Here!</strong>
-          </p>
-          <div
-            style={{ border: "1px solid black", width: "30vw", height: "30vw" }}
-          >
-            <Map
-              initialViewState={{
-                latitude: event?.latitude ?? 0,
-                longitude: event?.longitude ?? 0,
-                zoom: 18,
-              }}
-              style={{
-                width: "30vw",
-                height: "30vw",
-              }}
-              mapStyle="mapbox://styles/mapbox/streets-v9"
-              mapboxAccessToken={MAPBOX_TOKEN}
+          </Link>
+        </div>
+        <div className="TruckDetails">
+          <span className="not-map">
+            {truck && (
+              <div className="grouped-truck-details">
+                <img
+                  className="truck-image"
+                  src={truck.attributes.image_link}
+                  alt="Food Truck Logo"
+                />
+                <h1>{truck.attributes.name}</h1>
+                <p>
+                  <strong>Food Type:</strong> {truck.attributes.cuisine_type}
+                </p>
+                <p>
+                  <strong>Where?:</strong> {event?.city}
+                </p>
+                <p>
+                  <strong>Description of Location:</strong> {event?.description}
+                </p>
+                <a
+                  className="weblink-button"
+                  href={truck.attributes.web_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit The Website
+                </a>
+              </div>
+            )}
+          </span>
+          <span className="map">
+            <p>
+              <strong>We Are Here!</strong>
+            </p>
+            <div
+              style={{ border: "1px solid black", width: "30vw", height: "30vw" }}
             >
-              <Marker
-                longitude={event?.longitude ?? 0}
-                latitude={event?.latitude ?? 0}
-                color="red"
-              />
-            </Map>
-          </div>
-        </span>
+              <Map
+                initialViewState={{
+                  latitude: event?.latitude ?? 0,
+                  longitude: event?.longitude ?? 0,
+                  zoom: 18,
+                }}
+                style={{
+                  width: "30vw",
+                  height: "30vw",
+                }}
+                mapStyle="mapbox://styles/mapbox/streets-v9"
+                mapboxAccessToken={MAPBOX_TOKEN}
+              >
+                <Marker
+                  longitude={event?.longitude ?? 0}
+                  latitude={event?.latitude ?? 0}
+                  color="red"
+                />
+              </Map>
+            </div>
+          </span>
+        </div>
       </div>
     );
   }

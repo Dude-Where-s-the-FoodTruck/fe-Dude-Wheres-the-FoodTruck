@@ -56,6 +56,14 @@ p {
     font-weight: 800;
 }
 
+.go-to-events-wrapper {
+  height: 9vh;
+  width: 10vw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 .go-to-events:hover {
  background-color: #34495e;
     border: 2px #f39c12 solid;
