@@ -23,9 +23,11 @@ export const MainPage: React.FC<MainPageProps> = ({
 }) => {
   return (
     <>
-      <Link to="/" style={{ textDecoration: "none" }}>
-        <button className="change-user">Change User</button>
-      </Link>
+      <div className="change-user-wrapper">
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <button className="change-user">Change User</button>
+        </Link>
+      </div>
       <div className="truck-view">
         <FilterForm
           truckData={truckData}
