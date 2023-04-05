@@ -56,7 +56,8 @@ input[type="time" i] {
 }
 
 .back-to-owner,
-.create-button {
+.create-button,
+.submit-button {
     height: 3.5em;
     background-color: lightgray;
     cursor: pointer;
@@ -66,7 +67,8 @@ input[type="time" i] {
 }
 
 .back-to-owner:hover,
-.create-button:hover {
+.create-button:hover
+.submit-button:hover {
     background-color: #34495e;
     border: 2px #f39c12 solid;
     color: #f39c12;

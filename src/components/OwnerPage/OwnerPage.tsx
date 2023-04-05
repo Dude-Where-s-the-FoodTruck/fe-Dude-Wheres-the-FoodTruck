@@ -26,6 +26,18 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
       {userType === "owner" && (
         <div className="owner-page-view">
           <header className="header">
+            <div className="buttons">
+              <Link
+                to="/owner/create-event" className="add-event-button" style={{ textDecoration: "none" }}>
+                Add Event
+              </Link>
+              <Link to="/owner">
+                <button className="back-to-owner">Back to Home</button>
+              </Link>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <button className="change-user">Change User</button>
+              </Link>
+            </div>
             <Link to="/owner">
               <img
                 className="truck-logo"
@@ -33,25 +45,6 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
                 alt="food-truck-logo"
               />
             </Link>
-            <div className="add-event-link">
-              <Link
-                to="/owner/create-event"
-                className="add-event-button"
-                style={{ textDecoration: "none" }}
-              >
-                Add Event
-              </Link>
-            </div>
-            <div className="update-back-home">
-              <Link to="/owner">
-                <button className="back-to-owner">Back to Home</button>
-              </Link>
-            </div>
-            <div className="change-user-container">
-              <Link to="/" style={{ textDecoration: "none" }}>
-                <button className="change-user">Change User</button>
-              </Link>
-            </div>
           </header>
 
           <div className="events-edit-container">

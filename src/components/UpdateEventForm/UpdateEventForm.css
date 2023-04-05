@@ -50,6 +50,10 @@
     width: 100vw;
 }
 
+.back-to-owner {
+    margin-top: 5px;
+}
+
 .back-to-owner,
 .submit-event {
     height: 3.5em;
@@ -80,3 +84,17 @@
     justify-content: center;
 
 }
+
+@media screen and (max-width: 700px) {
+    .current-event-details {
+        display: flex;
+        justify-content: center;
+        height: 40vh;
+        align-items: center;
+        margin-top: 6em;
+        flex-direction: column;
+    }
+    .owner-footer {
+        align-self: flex-end;
+    }
+  }
