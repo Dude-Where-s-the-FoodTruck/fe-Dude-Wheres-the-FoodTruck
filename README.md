@@ -83,6 +83,8 @@ This repo is the front end for such a website. It utilizes typescript, mapbox GL
 </br>[![Git][git]][git-url]
 </br>[![GitHub][github]][github-url]
 </br>[![Visual Studio Code]][VSCode-url]
+</br>[![Typescript]][typescript-url]
+<br/>[![React][React]][react-url] 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,7 +97,7 @@ This repo is the front end for such a website. It utilizes typescript, mapbox GL
 * TypeScript
 
 ### Installation
-## To use the deployed app visit: <a href="" target="_blank"></a>
+## To use the deployed app visit: <a href="https://fe-dude-wheres-the-food-truck.vercel.app" target="_blank">https://fe-dude-wheres-the-food-truck.vercel.app</a>
 1. Fork the Repo from the [Repository](https://github.com/arstaffieri/rancid-tomatillos/issues)
 2. Clone the repo
    ```sh
@@ -103,7 +105,7 @@ This repo is the front end for such a website. It utilizes typescript, mapbox GL
    ```
 3. CD into foodtruck
    ```sh
-   cd foodtruck
+   cd fe-Dude-Wheres-the-FoodTruck
    ```
 4. Install NPM packages
    ```sh
@@ -176,7 +178,25 @@ See the [open issues](https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wher
 ## See the Project in Action
 
 
+##User View
 
+
+
+https://user-images.githubusercontent.com/107894408/230204058-790a3be9-aca0-44d8-a8ec-1e2a345a93ad.mp4
+
+
+
+##Owner View
+
+
+
+<img width="1680" alt="Screen Shot 2023-04-05 at 2 34 26 PM" src="https://user-images.githubusercontent.com/107894408/230205569-fabc547c-5be9-4b00-90ea-d433113661c6.png">
+
+<img width="1680" alt="Screen Shot 2023-04-05 at 2 34 39 PM" src="https://user-images.githubusercontent.com/107894408/230205614-2f52940d-9171-4066-bebb-fee9392c68a3.png">
+
+<img width="1680" alt="Screen Shot 2023-04-05 at 2 34 48 PM" src="https://user-images.githubusercontent.com/107894408/230205649-de463a1d-2721-4b35-821e-343b549c7b78.png">
+
+<img width="1680" alt="Screen Shot 2023-04-05 at 2 34 55 PM" src="https://user-images.githubusercontent.com/107894408/230205703-f7ec3122-f63c-4a19-b947-4fd7a27728ce.png">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -196,36 +216,40 @@ See the [open issues](https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wher
 [Cypress-url]: https://www.cypress.io/
 [webpack]: https://img.shields.io/badge/Webpack-563D7C?style=for-the-badge&logo=webpack&logoColor=white
 [webpack-url]: https://webpack.js.org/
+[React]: https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge
+[react-url]: https://reactjs.org/
 [css]: https://img.shields.io/badge/CSS-000000?style=for-the-badge&logo=css&logoColor=white
 [css-url]: https://www.w3.org/Style/CSS/Overview.en.html
 [html]: https://img.shields.io/badge/HTML-4A4A55?style=for-the-badge&logo=HTML&logoColor=FF3E00
 [html-url]: https://www.w3schools.com/howto/howto_make_a_website.asp
 [javascript.js]: https://img.shields.io/badge/JavaScript-0769AD?style=for-the-badge&logo=javascript&logoColor=white
 [javascript-url]: https://www.javascript.com/
+[Typescript]: https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square
+[typescript-url]: https://www.typescriptlang.org/
 [api]: https://img.shields.io/badge/API-15EA75?style=for-the-badge&logo=HTML&logoColor=FF3E00
 [api-url]: https://www.w3schools.com/js/js_api_intro.asp
 [github]: https://img.shields.io/badge/GitHub-22043C?style=for-the-badge&logo=github&logoColor=FF3E00
 [github-url]: https://github.com/
 [git]: https://img.shields.io/badge/Git-2E0305?style=for-the-badge&logo=git&logoColor=FF3E00
 [git-url]: https://git-scm.com/
-[commit-activity-shield]: https://img.shields.io/github/commit-activity/m/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck?style=for-the-badge
-[commit-activity-url]: https://github.com/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck/commits/main
-[last-commit-shield]: https://img.shields.io/github/last-commit/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck?style=for-the-badge
-[last-commit-url]: https://github.com/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck/commits/main
-[contributors-shield]: https://img.shields.io/github/contributors/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck.svg?style=for-the-badge
-[contributors-url]: https://github.com/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck.svg?style=for-the-badge
-[forks-url]: https://github.com/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck/network/members
-[stars-shield]: https://img.shields.io/github/stars/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck.svg?style=for-the-badge
-[stars-url]: https://github.com/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck.svg?style=for-the-badge
-[issues-url]: https://github.com/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck/issues
-[code-size-shield]: https://img.shields.io/github/languages/code-size/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck?style=for-the-badge
-[code-size-url]: https://github.com/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck/wiki
-[watchers-shield]: https://img.shields.io/github/watchers/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck?style=social
-[watchers-url]: https://github.com/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck/network/members
-[license-shield]: https://img.shields.io/github/license/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck.svg?style=for-the-badge
-[license-url]: https://github.com/Dude-Where-s-the-FoodTruck/be-dude-wheres-my-foodtruck/blob/master/LICENSE.txt
+[commit-activity-shield]: https://img.shields.io/github/commit-activity/m/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck?style=for-the-badge
+[commit-activity-url]: https://github.com/Dude-Where-s-the-FoodTruck/fe-fe-Dude-Wheres-the-FoodTruck/commits/main
+[last-commit-shield]: https://img.shields.io/github/last-commit/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck?style=for-the-badge
+[last-commit-url]: https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck/commits/main
+[contributors-shield]: https://img.shields.io/github/contributors/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck.svg?style=for-the-badge
+[contributors-url]: https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck.svg?style=for-the-badge
+[forks-url]: https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck/network/members
+[stars-shield]: https://img.shields.io/github/stars/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck.svg?style=for-the-badge
+[stars-url]: https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck.svg?style=for-the-badge
+[issues-url]: https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck/issues
+[code-size-shield]: https://img.shields.io/github/languages/code-size/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck?style=for-the-badge
+[code-size-url]: https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck/wiki
+[watchers-shield]: https://img.shields.io/github/watchers/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck?style=social
+[watchers-url]: https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck/network/members
+[license-shield]: https://img.shields.io/github/license/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck.svg?style=for-the-badge
+[license-url]: https://github.com/Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
