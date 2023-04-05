@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 name: cypress-test CI
 on:
   push:
@@ -18,19 +17,3 @@ jobs:
           start: npm start
           test: npm run cypress
           config-file: cypress.config.js
-=======
-name: Cypress CI
-on: [push]
-jobs:
- Cypress-Test:
-   runs-on: windows-latest
-   steps:
-     - name: Checkout GitCode
-       uses: actions/checkout@v2
-       
-     - name: Run Cypress Test
-       uses: cypress-io/github-action@v4
-       with:
-         command: npm run cypress
-         browser: chrome
->>>>>>> main
