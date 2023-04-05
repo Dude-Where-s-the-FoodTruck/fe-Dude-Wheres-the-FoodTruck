@@ -75,7 +75,7 @@ export class EditTruckForm extends React.Component<
     if (photo) {
       formData.append("image_link", photo);
     }
-
+    console.log(formData)
 
     try {
       const response = await fetch(

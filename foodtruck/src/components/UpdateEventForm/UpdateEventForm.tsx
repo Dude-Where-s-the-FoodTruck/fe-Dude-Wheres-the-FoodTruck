@@ -1,11 +1,20 @@
 import "./UpdateEventForm.css";
 import React from "react";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Truck } from "../App/App";
 
 interface UpdateEventFormProps {
   ownerTrucks: Truck[];
   fetchTrucks: () => Promise<void>;
+}
+
+interface PatchFormData {
+  event_date?: string;
+  location?: string;
+  start_time?: string;
+  end_time?: string;
+  description?: string;
+  city?: string;
 }
 
 export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
@@ -20,49 +29,45 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+
     const eventDateInput = document.getElementById("event_date") as HTMLInputElement;
     const locationInput = document.getElementById("street") as HTMLInputElement;
     const startTimeInput = document.getElementById("start_time") as HTMLInputElement;
     const endTimeInput = document.getElementById("end_time") as HTMLInputElement;
     const descriptionInput = document.getElementById("description") as HTMLInputElement;
     const cityInput = document.getElementById("city") as HTMLInputElement;
-  
-    const formData = new FormData();
-  
+
+    const formData: PatchFormData = {};
     if (eventDateInput.value) {
-      formData.append("event_date", eventDateInput.value)
+      formData["event_date"] = eventDateInput.value;
     }
-  
     if (locationInput.value) {
-      formData.append("location", locationInput.value)
+      formData["location"] = locationInput.value;
     }
-  
     if (startTimeInput.value) {
-      formData.append("start_time", startTimeInput.value)
+      formData["start_time"] = startTimeInput.value;
     }
-  
     if (endTimeInput.value) {
-      formData.append("end_time", endTimeInput.value)
+      formData["end_time"] = endTimeInput.value;
     }
-  
     if (descriptionInput.value) {
-      formData.append("description", descriptionInput.value)
+      formData["description"] = descriptionInput.value;
     }
-  
     if (cityInput.value) {
-      formData.append("city", cityInput.value)
+      formData["city"] = cityInput.value;
     }
-  
+
     const url = `https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/${ownerTrucks[0].id}/events/${eventId}`;
-  
     try {
       const response = await fetch(url, {
         method: "PATCH",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-
       await response.json();
+
       if (response.ok) {
         eventDateInput.value = "";
         startTimeInput.value = "";
@@ -70,7 +75,7 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
         descriptionInput.value = "";
         locationInput.value = "";
         cityInput.value = "";
-  
+
         history.push("/owner");
         fetchTrucks();
       } else {

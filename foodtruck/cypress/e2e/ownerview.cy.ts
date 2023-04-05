@@ -1,15 +1,14 @@
 describe('User view tests', () => {
     beforeEach(() => {
-    cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_truc", {fixture: "example.json"})
+    cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks", {fixture: "singleTruck.json"})
       cy.visit('http://localhost:3000/')
-
       cy.get('.owner-button').contains("I'm A Truck Owner")
       .click()
     })
 
     it('should have a header and footer',() => {
         cy.get('.header').contains('Add Event')
-        cy.get('.footer').contains("© Dude, Where's The FoodTruck")
+        cy.get('.owner-footer').contains("© Dude, Where's The FoodTruck")
     })
 
     it('should have a button Add Event',() => {
@@ -53,26 +52,41 @@ describe('User view tests', () => {
 
 
     it('should have a submit button to patch updates',() => {
-        cy.get('.name-input').type('testingTruck')
-        .should('have.value', 'testingTruck')
+        cy.fixture('singleTruck.json').then((truckDetails) => {
+        cy.intercept('GET', "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/2", truckDetails).as('getTruckDetails');
+        cy.wait(500);
+        cy.get('.name-input').type('Normal Foodtruck')
+        .should('have.value', 'Normal Foodtruck')
         cy.get('.website-input').type('website')
         .should('have.value', 'website')
         cy.get('.input-photo').type('Photo')
         .should('have.value', 'Photo')
         cy.get('.select-type').select('Spanish')
         cy.get('.submit-button').click()
-        cy.get('.event-card-container').contains('testingTruck')
+        cy.get('.event-card-container').contains('Normal Foodtruck')
+        cy.wait(500)
+
+        cy.fixture('editTruck.json').then((editData) => {
+            cy.intercept('PATCH', 'https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/2', (req) => {
+                req.reply(editData);
+            }).as('patchEvent');
+
+            cy.get('.submit-button').click();
+
+            cy.wait('@patchEvent').its('response.statusCode').should('eq', 200);
+        });
+    });
         
     })
 
     it('should display all events for a single truck',() => {
-        cy.get('.all-events-container').children().should("have.length", 4)
+        cy.get('.all-events-container').children().should("have.length", 1)
        
     })
 
     it(' should be able to click an event to go to edit',() => {
         cy.get('.all-events-container > :nth-child(1)').click()
-        cy.url().should("eq", "http://localhost:3000/owner/events/16")
+        cy.url().should("eq", "http://localhost:3000/owner/events/5")
     })
 
     it('should have a button Add Event',() => {
