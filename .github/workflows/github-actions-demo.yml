@@ -1,17 +1,29 @@
-name: Cypress Tests
-
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
-
 jobs:
-  cypress-run:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
         uses: actions/checkout@v3
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: Setup Node.js and install dependencies
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - run: npm install cypress
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          build: npm run build
+          browser: chrome
+          record: true
           start: npm start
+          wait-on: 'http://localhost:3000'
