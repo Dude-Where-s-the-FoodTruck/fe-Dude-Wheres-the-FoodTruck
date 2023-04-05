@@ -2,7 +2,7 @@
   margin-top: 90px;
   width: 50em;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-around;
   flex-direction: row;
 }
@@ -95,9 +95,9 @@ label {
     margin-top: 90px;
     width: 50em;
     display: flex;
+    align-items: flex-end;
     justify-content: space-around;
     flex-direction: row;
-    align-content: center;
   }
 }
 
