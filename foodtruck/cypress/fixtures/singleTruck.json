@@ -1,0 +1,34 @@
+{
+    "data": [
+      {
+        "id": "2",
+        "type": "food_truck",
+        "attributes": {
+          "name": "Normal Foodtruck",
+          "cuisine_type": "American",
+          "web_link": "https://bobs-burgers.fandom.com/wiki/Bob%27s_Burgers_Wiki",
+          "image_link": "https://image.api.playstation.com/vulcan/img/rnd/202010/2621/H9v5o8vP6RKkQtR77LIGrGDE.png",
+          "events": [
+            {
+              "id": 5,
+              "food_truck_id": 2,
+              "event_date": "2023-02-24",
+              "latitude": 39.7516128,
+              "longitude": -104.9901364,
+              "start_time": "15:00",
+              "end_time": "18:00",
+              "description": "This is a thing right here",
+              "created_at": "2023-03-31T23:19:46.799Z",
+              "updated_at": "2023-03-31T23:19:46.799Z",
+              "city": "Denver"
+            }
+          ]
+        },
+        "relationships": {
+          "events": {
+            "data": []
+          }
+        }
+      }
+    ]
+  }

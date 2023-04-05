@@ -1,6 +1,6 @@
 describe('User view tests', () => {
     beforeEach(() => {
-    cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_truc", {fixture: "example.json"})
+    cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_truc", {fixture: "singleTruck.json"})
       cy.visit('http://localhost:3000/')
 
       cy.get('.owner-button').contains("I'm A Truck Owner")
@@ -30,7 +30,11 @@ describe('User view tests', () => {
         .should('have.value', 'Aurora')
     })
 
-    it.only('should be able to patch event',() => {
+    it.only('should be able to post event',() => {
+        cy.fixture('singleTruck.json').then((truckDetails) => {
+        cy.intercept('GET', "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/2", truckDetails).as('getTruckDetails');
+        cy.wait(500);
+
         cy.get('#event_date').type('2023-07-13')
         .should('have.value', '2023-07-13')
         cy.get('#start_time').type('08:05:00')
@@ -43,9 +47,18 @@ describe('User view tests', () => {
         .should('have.value', '490 w colfax')
         cy.get('#city').type('Denver')
         .should('have.value', 'Denver')
-        cy.get(':nth-child(8) > button').click()
+        cy.wait(500)
 
+        cy.fixture('post.json').then((postData) => {
+            cy.intercept('POST', 'https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/2/events', (req) => {
+                req.reply(postData);
+            }).as('postEvent');
 
+            cy.get(':nth-child(8) > button').click()
+
+            cy.wait('@postEvent').its('response.statusCode').should('eq', 200);
+        });
+    });
     })
 
     it('should have button Create Event',() => {
