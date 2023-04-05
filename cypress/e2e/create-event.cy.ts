@@ -1,6 +1,6 @@
 describe('User view tests', () => {
     beforeEach(() => {
-    cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_truc", {fixture: "singleTruck.json"})
+    cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks", {fixture: "singleTruck.json"})
       cy.visit('http://localhost:3000/')
 
       cy.get('.owner-button').contains("I'm A Truck Owner")
