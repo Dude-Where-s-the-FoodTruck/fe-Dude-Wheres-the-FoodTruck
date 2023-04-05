@@ -30,7 +30,7 @@ describe('template spec', () => {
     cy.get('.map').contains("We Are Here!")
   })
   it("Should have a button to return to all events", () => {
-    cy.get('.not-map').contains("Events")
+    cy.get('.go-to-events').contains("Events")
       .click()
   })
 
