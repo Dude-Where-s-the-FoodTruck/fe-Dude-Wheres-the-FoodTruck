@@ -11,4 +11,3 @@ jobs:
        uses: cypress-io/github-action@v4
        with:
          command: npx run cypress
-         browser: chrome
