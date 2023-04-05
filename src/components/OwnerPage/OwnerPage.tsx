@@ -28,7 +28,10 @@ export const OwnerPage: React.FC<OwnerPageProps> = ({
           <header className="header">
             <div className="buttons">
               <Link
-                to="/owner/create-event" className="add-event-button" style={{ textDecoration: "none" }}>
+                to="/owner/create-event"
+                className="add-event-button"
+                style={{ textDecoration: "none" }}
+              >
                 Add Event
               </Link>
               <Link to="/owner">

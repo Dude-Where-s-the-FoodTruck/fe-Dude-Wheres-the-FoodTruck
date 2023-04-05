@@ -18,7 +18,6 @@ export const TruckCard: React.FC<TruckCardProps> = ({
   city,
   date,
 }) => {
-
   return (
     <Link
       to={`/foodtruck/${foodTruckId}/${eventId}`}

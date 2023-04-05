@@ -92,7 +92,7 @@ class App extends React.Component<{}, AppState> {
   }
   getFilteredTrucks = (city: string): void => {
     const { trucks } = this.state;
-    console.log(city)
+
     const filtered = trucks.data.filter((truck) =>
       truck.attributes.events.some((event) => event.city === city)
     );

@@ -1,15 +1,15 @@
 describe('template spec', () => {
   beforeEach(() => {
-    cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks", {fixture: "allTrucks.json"})
+    cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks", { fixture: "allTrucks.json" })
     cy.visit('http://localhost:3000/')
     cy.get('.user-button').contains("I'm A hungry User")
-    .click()
+      .click()
     cy.fixture('eventDetails.json').then((truckDetails) => {
-    cy.intercept('GET', "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/2", truckDetails).as('getTruckDetails')
-    cy.get('.trucks-container').children().first().click()
-    cy.wait(500)
+      cy.intercept('GET', "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks/2", truckDetails).as('getTruckDetails')
+      cy.get('.trucks-container').children().first().click()
+      cy.wait(500)
     })
-    
+
   })
   it("Should have a truck name", () => {
     cy.get('h1').contains("The Food Truck We Deserve")
@@ -31,7 +31,7 @@ describe('template spec', () => {
   })
   it("Should have a button to return to all events", () => {
     cy.get('.not-map').contains("Events")
-    .click()
+      .click()
   })
 
 })

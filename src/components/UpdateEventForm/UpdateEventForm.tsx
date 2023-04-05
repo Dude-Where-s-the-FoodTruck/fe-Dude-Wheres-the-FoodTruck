@@ -30,11 +30,19 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const eventDateInput = document.getElementById("event_date") as HTMLInputElement;
+    const eventDateInput = document.getElementById(
+      "event_date"
+    ) as HTMLInputElement;
     const locationInput = document.getElementById("street") as HTMLInputElement;
-    const startTimeInput = document.getElementById("start_time") as HTMLInputElement;
-    const endTimeInput = document.getElementById("end_time") as HTMLInputElement;
-    const descriptionInput = document.getElementById("description") as HTMLInputElement;
+    const startTimeInput = document.getElementById(
+      "start_time"
+    ) as HTMLInputElement;
+    const endTimeInput = document.getElementById(
+      "end_time"
+    ) as HTMLInputElement;
+    const descriptionInput = document.getElementById(
+      "description"
+    ) as HTMLInputElement;
     const cityInput = document.getElementById("city") as HTMLInputElement;
 
     const formData: PatchFormData = {};
@@ -100,43 +108,43 @@ export const UpdateEventForm: React.FC<UpdateEventFormProps> = ({
           </div>
         )}
       </div>
-        <div className="update-form-wrapper">
-          <form onSubmit={handleSubmit} className="update-form">
-            <div className="form-group">
-              <label htmlFor="event_date">Event Date:</label>
-              <input type="date" id="event_date" name="event_date" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="start_time">Start Time:</label>
-              <input type="time" id="start_time" name="start_time" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="end_time">End Time:</label>
-              <input type="time" id="end_time" name="end_time" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="description">Location Description:</label>
-              <textarea
-                id="description"
-                className="text-area"
-                name="description"
-                style={{ resize: "none" }}
-                maxLength={200}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="street">Street Address:</label>
-              <input type="text" id="street" name="street" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="city">City:</label>
-              <input type="text" id="city" name="city" />
-            </div>
-            <button className="submit-event" type="submit">
-              Update Event
-            </button>
-          </form>
-        </div>
+      <div className="update-form-wrapper">
+        <form onSubmit={handleSubmit} className="update-form">
+          <div className="form-group">
+            <label htmlFor="event_date">Event Date:</label>
+            <input type="date" id="event_date" name="event_date" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="start_time">Start Time:</label>
+            <input type="time" id="start_time" name="start_time" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="end_time">End Time:</label>
+            <input type="time" id="end_time" name="end_time" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="description">Location Description:</label>
+            <textarea
+              id="description"
+              className="text-area"
+              name="description"
+              style={{ resize: "none" }}
+              maxLength={200}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="street">Street Address:</label>
+            <input type="text" id="street" name="street" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="city">City:</label>
+            <input type="text" id="city" name="city" />
+          </div>
+          <button className="submit-event" type="submit">
+            Update Event
+          </button>
+        </form>
+      </div>
     </>
   );
 };

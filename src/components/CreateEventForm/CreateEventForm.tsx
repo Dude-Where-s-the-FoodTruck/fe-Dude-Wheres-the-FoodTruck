@@ -16,7 +16,6 @@ interface EventData {
   city: string;
 }
 
-
 export const CreateEventForm: React.FC<CreateEventFormProps> = ({
   ownerTrucks,
   fetchTrucks,
@@ -50,7 +49,8 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
       });
 
       if (response.ok) {
-        (document.getElementById("foodtruck") as HTMLSelectElement
+        (
+          document.getElementById("foodtruck") as HTMLSelectElement
         ).selectedIndex = 0;
         (document.getElementById("event_date") as HTMLInputElement).value = "";
         (document.getElementById("start_time") as HTMLInputElement).value = "";
@@ -116,7 +116,9 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
               <input type="text" id="city" name="city" required />
             </div>
             <div className="form-group">
-              <button className="submit-button" type="submit">Create Event</button>
+              <button className="submit-button" type="submit">
+                Create Event
+              </button>
             </div>
           </form>
         </div>

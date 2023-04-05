@@ -1,16 +1,16 @@
 describe('User view tests', () => {
     beforeEach(() => {
-    cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks", {fixture: "allTrucks.json"})
-      cy.visit('http://localhost:3000/')
+        cy.intercept("GET", "https://intense-thicket-16951.herokuapp.com/api/v1/food_trucks", { fixture: "allTrucks.json" })
+        cy.visit('http://localhost:3000/')
 
-      cy.get('.user-button').contains("I'm A hungry User")
-      .click()
+        cy.get('.user-button').contains("I'm A hungry User")
+            .click()
     })
     it("Should have the data", () => {
         cy.get('.drop-down').contains("Denver")
         cy.get('.drop-down').contains("Englewood")
         cy.get('.drop-down').contains("Colorado Springs")
-       
+
     })
     it("Should have four events visible", () => {
         cy.get('.trucks-container').children().should("have.length", 4)
@@ -28,7 +28,7 @@ describe('User view tests', () => {
     it("Should be able to filter events by city", () => {
         cy.get('.drop-down').select("Denver")
         cy.get('.submit-state')
-        .click()
+            .click()
         cy.url().should("eq", "http://localhost:3000/main")
         cy.get('.trucks-container').children().should("have.length", 2)
         cy.contains("Denver")
@@ -39,7 +39,7 @@ describe('User view tests', () => {
     })
     it("Should be able to return to all", () => {
         cy.get('.reset-button')
-        .click()
+            .click()
         cy.get('.trucks-container').children().should("have.length", 4)
     })
     it("Should show truck details when an event is clicked", () => {

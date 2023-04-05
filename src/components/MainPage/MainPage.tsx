@@ -21,8 +21,6 @@ export const MainPage: React.FC<MainPageProps> = ({
   reset,
   city,
 }) => {
-
-
   return (
     <>
       <Link to="/" style={{ textDecoration: "none" }}>

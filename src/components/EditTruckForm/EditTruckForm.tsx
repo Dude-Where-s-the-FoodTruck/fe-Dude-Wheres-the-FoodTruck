@@ -61,7 +61,6 @@ export class EditTruckForm extends React.Component<
     const { name, website, cuisine, photo } = this.state;
     const truckId = this.props.filteredOwnerTrucks[0].id;
 
-
     const formData = new FormData();
     if (name) {
       formData.append("name", name);
@@ -75,7 +74,6 @@ export class EditTruckForm extends React.Component<
     if (photo) {
       formData.append("image_link", photo);
     }
-    console.log(formData)
 
     try {
       const response = await fetch(
