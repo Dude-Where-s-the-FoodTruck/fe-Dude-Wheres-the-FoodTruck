@@ -103,7 +103,7 @@ export const CreateEventForm: React.FC<CreateEventFormProps> = ({
                 id="description"
                 name="description"
                 rows={3}
-                maxLength={140}
+                maxLength={249}
                 required
               />
             </div>

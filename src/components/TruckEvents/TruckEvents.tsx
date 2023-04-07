@@ -29,11 +29,15 @@ export const TruckEvents: React.FC<TruckEventsProps> = ({ ownerTrucks }) => {
   });
 
   return (
-    <div className="truck-events-container">
-      <div className="truck-event-header">
-        <h1>Upcoming Events</h1>
+    <div>
+      <div className="truck-events-container">
+        <div className="truck-event-header">
+          <h1>Upcoming Events</h1>
+        </div>
+        <div className="all-events-wrapper">
+          <div className="all-events-container">{truckEventCards}</div>
+        </div>
       </div>
-      <div className="all-events-container">{truckEventCards}</div>
     </div>
   );
 };
