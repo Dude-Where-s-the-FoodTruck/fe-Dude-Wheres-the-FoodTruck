@@ -14,10 +14,9 @@
     font-size: 13px;
     border: 1px solid black;
     box-shadow: 13px 12px 21px -5px rgba(5,0,0,0.6);
-    -webkit-box-shadow: 13px 12px 21px -5px rgba(5,0,0,0.6);
-    -moz-box-shadow: 13px 12px 21px -5px rgba(5,0,0,0.6);
     cursor: pointer;
     color: rgb(243,164,68);
+    margin-top: 1.5em;
 }
 
 
