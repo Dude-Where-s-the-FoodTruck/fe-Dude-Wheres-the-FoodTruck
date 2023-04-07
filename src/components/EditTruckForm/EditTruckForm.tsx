@@ -141,6 +141,8 @@ export class EditTruckForm extends React.Component<
               <option>Vegan</option>
               <option>Fusion</option>
               <option>German</option>
+              <option>American</option>
+              <option>Other</option>
             </select>
           </div>
           <br />
