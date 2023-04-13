@@ -98,7 +98,7 @@ This repo is the front end for such a website. It utilizes typescript, mapbox GL
 
 ### Installation
 ## To use the deployed app visit: <a href="https://fe-dude-wheres-the-food-truck.vercel.app" target="_blank">https://fe-dude-wheres-the-food-truck.vercel.app</a>
-1. Fork the Repo from the [Repository](https://github.com/arstaffieri/rancid-tomatillos/issues)
+1. Fork the Repo from the [Repository](git@github.com:Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck.git)
 2. Clone the repo
    ```sh
    git@github.com:Dude-Where-s-the-FoodTruck/fe-Dude-Wheres-the-FoodTruck.git
